@@ -160,25 +160,25 @@ export default function ProductDetailPage({ params }: PageProps) {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-12">
-      {/* Breadcrumb Navigation */}
-      <nav className="flex flex-wrap items-center gap-2 text-xs text-[#777]">
-        <Link href="/" className="hover:text-black transition">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-6 space-y-6 sm:space-y-12">
+      {/* Compact Single-Line Breadcrumb Navigation */}
+      <nav className="flex items-center gap-1.5 text-[10.5px] sm:text-xs text-[#888] overflow-x-auto no-scrollbar whitespace-nowrap py-1">
+        <Link href="/" className="hover:text-black transition shrink-0">
           Home
         </Link>
-        <ChevronRight className="w-3.5 h-3.5" />
-        <Link href="/products" className="hover:text-black transition">
-          Pakistani Lawn Suits
+        <ChevronRight className="w-3 h-3 text-[#AAA] shrink-0" />
+        <Link href="/products" className="hover:text-black transition shrink-0">
+          Suits
         </Link>
-        <ChevronRight className="w-3.5 h-3.5" />
+        <ChevronRight className="w-3 h-3 text-[#AAA] shrink-0" />
         <Link
           href={`/products?category=${encodeURIComponent(product.category)}`}
-          className="hover:text-black transition"
+          className="hover:text-black transition shrink-0"
         >
           {product.category}
         </Link>
-        <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-black font-semibold truncate max-w-[200px] sm:max-w-none">
+        <ChevronRight className="w-3 h-3 text-[#AAA] shrink-0" />
+        <span className="text-black font-semibold truncate max-w-[150px] sm:max-w-none shrink-0">
           {product.title}
         </span>
       </nav>

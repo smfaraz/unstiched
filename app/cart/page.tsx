@@ -83,13 +83,13 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-8 space-y-4 sm:space-y-8">
       {/* Breadcrumb Navigation */}
-      <nav className="flex items-center gap-2 text-xs text-[#777]">
+      <nav className="flex items-center gap-1.5 text-[10.5px] sm:text-xs text-[#888] overflow-x-auto no-scrollbar whitespace-nowrap">
         <Link href="/" className="hover:text-black transition">
           Home
         </Link>
-        <ChevronRight className="w-3.5 h-3.5" />
+        <ChevronRight className="w-3 h-3 text-[#AAA]" />
         <span className="text-black font-semibold">Shopping Bag ({cart.length} items)</span>
       </nav>
 
