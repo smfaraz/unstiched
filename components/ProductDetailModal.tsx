@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useEcommerce } from '@/context/EcommerceContext';
+import { useEcommerce, sanitizeProductImage } from '@/context/EcommerceContext';
 import { CustomMeasurements } from '@/types/ecommerce';
 import {
   X,
@@ -151,7 +151,7 @@ export default function ProductDetailModal() {
               {/* Main Zoom Display */}
               <div className="relative aspect-3/4 w-full bg-[#EBE9E1] rounded-xs overflow-hidden shadow-xs border border-[#E5E2D9]">
                 <Image
-                  src={product.images[selectedImageIdx] || product.images[0]}
+                  src={sanitizeProductImage(product.images?.[selectedImageIdx] || product.images?.[0], selectedImageIdx)}
                   alt={product.title}
                   fill
                   priority
@@ -195,7 +195,7 @@ export default function ProductDetailModal() {
                     }`}
                   >
                     <Image
-                      src={img}
+                      src={sanitizeProductImage(img, idx)}
                       alt={`View ${idx + 1}`}
                       fill
                       className="object-cover object-top"

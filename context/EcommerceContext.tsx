@@ -133,19 +133,46 @@ const defaultFilters: ProductFilter = {
   sortBy: 'featured',
 };
 
+const DEFAULT_SUIT_IMAGES = [
+  '/images/products/pink_lawn_suit.jpg',
+  '/images/products/mint_chikankari_suit.jpg',
+  '/images/products/emerald_festive_suit.jpg',
+  '/images/products/lavender_chiffon_suit.jpg',
+  '/images/products/blue_cutwork_suit.jpg',
+  '/images/products/mustard_daily_suit.jpg',
+  '/images/products/maroon_velvet_suit.jpg',
+  '/images/products/peach_curves_suit.jpg',
+];
+
+export function sanitizeProductImage(imgUrl?: string, index: number = 0): string {
+  if (!imgUrl || typeof imgUrl !== 'string' || imgUrl.includes('unsplash.com') || imgUrl.includes('picsum.photos')) {
+    return DEFAULT_SUIT_IMAGES[index % DEFAULT_SUIT_IMAGES.length];
+  }
+  return imgUrl;
+}
+
 const EcommerceContext = createContext<EcommerceContextType | undefined>(undefined);
 
 export function EcommerceProvider({ children }: { children: React.ReactNode }) {
   const [products, setProducts] = useState<Product[]>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('pehnava_products');
+      const saved = localStorage.getItem('pehnava_products_v3');
       if (saved) {
         try {
-          return JSON.parse(saved);
+          const parsed: Product[] = JSON.parse(saved);
+          return parsed.map((p, pIdx) => ({
+            ...p,
+            images: p.images && p.images.length > 0 
+              ? p.images.map((img, i) => sanitizeProductImage(img, pIdx + i))
+              : [sanitizeProductImage(undefined, pIdx)],
+          }));
         } catch {
           return INITIAL_PRODUCTS;
         }
       }
+      // Migrate legacy cache
+      localStorage.removeItem('pehnava_products');
+      localStorage.setItem('pehnava_products_v3', JSON.stringify(INITIAL_PRODUCTS));
     }
     return INITIAL_PRODUCTS;
   });
@@ -208,7 +235,7 @@ export function EcommerceProvider({ children }: { children: React.ReactNode }) {
   // Sync state to local storage
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('pehnava_products', JSON.stringify(products));
+      localStorage.setItem('pehnava_products_v3', JSON.stringify(products));
     }
   }, [products]);
 

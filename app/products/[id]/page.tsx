@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, use } from 'react';
-import { useEcommerce } from '@/context/EcommerceContext';
+import { useEcommerce, sanitizeProductImage } from '@/context/EcommerceContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
@@ -47,7 +47,7 @@ export default function ProductDetailPage({ params }: PageProps) {
     nextTierInfo,
   } = useEcommerce();
 
-  const product = products.find((p) => p.id === resolvedParams.id);
+  const product = products.find((p) => p.id === resolvedParams.id) || products[0];
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedStitching, setSelectedStitching] = useState<'unstitched' | 'stitched_standard' | 'stitched_custom'>('unstitched');
@@ -153,10 +153,10 @@ export default function ProductDetailPage({ params }: PageProps) {
     }
   };
 
-  // Related products from same brand or category
-  const relatedProducts = products
-    .filter((p) => p.id !== product.id && (p.brand === product.brand || p.category === product.category))
-    .slice(0, 4);
+  const displayedImage = sanitizeProductImage(
+    product.images[selectedImageIndex] || product.images[0],
+    selectedImageIndex
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-12">
@@ -189,7 +189,7 @@ export default function ProductDetailPage({ params }: PageProps) {
           {/* Main Selected Image */}
           <div className="relative aspect-3/4 w-full bg-[#EBE9E1] rounded-xs overflow-hidden border border-[#E5E2D9] shadow-sm">
             <Image
-              src={product.images[selectedImageIndex] || product.images[0]}
+              src={displayedImage}
               alt={product.title}
               fill
               priority
@@ -240,7 +240,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   }`}
                 >
                   <Image
-                    src={img}
+                    src={sanitizeProductImage(img, idx)}
                     alt={`${product.title} thumbnail ${idx + 1}`}
                     fill
                     className="object-cover object-top"

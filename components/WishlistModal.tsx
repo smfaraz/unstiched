@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useEcommerce } from '@/context/EcommerceContext';
+import { useEcommerce, sanitizeProductImage } from '@/context/EcommerceContext';
 import {
   X,
   Heart,
@@ -30,50 +30,40 @@ export default function WishlistModal() {
   const savedProducts = products.filter((p) => wishlist.includes(p.id));
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
-      <div className="relative w-full max-w-3xl bg-[#FAF9F6] rounded-xs shadow-2xl overflow-hidden border border-[#E5E2D9] my-8 max-h-[85vh] flex flex-col">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-300">
+      <div className="bg-white rounded-xs border border-[#E5E2D9] max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-[#E5E2D9] shrink-0">
-          <div className="flex items-center gap-2">
-            <Heart className="w-4 h-4 text-[#8B4513] fill-[#8B4513]" />
-            <span className="font-serif text-lg font-bold text-[#1A1A1A] uppercase tracking-tight">
-              Saved Pakistani Suits ({savedProducts.length})
-            </span>
+        <div className="p-4 sm:p-5 border-b border-[#E5E2D9] flex items-center justify-between bg-[#FAF9F6]">
+          <div className="flex items-center gap-2.5">
+            <Heart className="w-5 h-5 text-[#8B4513] fill-[#8B4513]" />
+            <h2 className="font-serif font-bold text-base text-[#1A1A1A]">
+              Your Saved Pakistani Suits ({savedProducts.length})
+            </h2>
           </div>
           <button
             onClick={closeModals}
-            className="p-1.5 text-[#1A1A1A] hover:bg-[#F2F0E9] rounded-xs transition"
-            aria-label="Close wishlist"
+            className="p-2 text-[#777] hover:text-black transition rounded-xs hover:bg-[#F2F0E9]"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* List of saved suits */}
-        <div className="overflow-y-auto p-4 sm:p-6 flex-1">
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
           {savedProducts.length === 0 ? (
-            <div className="py-12 text-center space-y-3">
-              <div className="w-14 h-14 bg-[#FAF5EE] border border-[#E5E2D9] rounded-xs flex items-center justify-center text-[#8B4513] mx-auto">
-                <Heart className="w-6 h-6" />
+            <div className="py-16 text-center space-y-4">
+              <div className="w-16 h-16 rounded-full bg-[#FAF9F6] border border-[#E5E2D9] flex items-center justify-center mx-auto text-[#888]">
+                <Heart className="w-8 h-8" />
               </div>
-              <h3 className="font-serif font-bold text-base text-[#1A1A1A] uppercase tracking-tight">Your Wishlist is Empty</h3>
-              <p className="text-xs text-[#777] max-w-xs mx-auto">
-                Tap the heart icon on any Maria B, Sana Safinaz or Asim Jofa lawn suit to save your favorites here.
-              </p>
-              <button
-                onClick={closeModals}
-                className="bg-black text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-xs shadow-xs hover:bg-[#222] transition"
-              >
-                Browse Lawn Suits
-              </button>
+              <div className="space-y-1">
+                <p className="font-serif font-bold text-base text-[#1A1A1A]">No suits saved yet</p>
+                <p className="text-xs text-[#777]">Explore our authentic Pakistani lawn collections and save your favorites.</p>
+              </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="divide-y divide-[#E5E2D9]">
               {savedProducts.map((p) => (
-                <div
-                  key={p.id}
-                  className="bg-white p-3.5 rounded-xs border border-[#E5E2D9] shadow-xs flex gap-3 relative"
-                >
+                <div key={p.id} className="py-4 flex gap-4 items-center">
                   <div
                     onClick={() => {
                       closeModals();
@@ -82,7 +72,7 @@ export default function WishlistModal() {
                     className="relative w-20 h-28 bg-[#EBE9E1] rounded-xs overflow-hidden shrink-0 border border-[#E5E2D9] cursor-pointer"
                   >
                     <Image
-                      src={p.images[0]}
+                      src={sanitizeProductImage(p.images?.[0])}
                       alt={p.title}
                       fill
                       className="object-cover object-top hover:scale-105 transition"

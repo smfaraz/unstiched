@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useEcommerce } from '@/context/EcommerceContext';
+import { useEcommerce, sanitizeProductImage } from '@/context/EcommerceContext';
 import {
   X,
   Trash2,
@@ -143,7 +143,7 @@ export default function CartDrawer() {
                 {/* Image */}
                 <div className="relative w-20 h-24 bg-[#EBE9E1] rounded-xs overflow-hidden shrink-0 border border-[#E5E2D9]">
                   <Image
-                    src={item.product.images[0]}
+                    src={sanitizeProductImage(item.product.images?.[0])}
                     alt={item.product.title}
                     fill
                     className="object-cover object-top"

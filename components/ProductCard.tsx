@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types/ecommerce';
-import { useEcommerce } from '@/context/EcommerceContext';
+import { useEcommerce, sanitizeProductImage } from '@/context/EcommerceContext';
 import {
   Heart,
   Eye,
@@ -36,6 +36,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const isSaved = isInWishlist(product.id);
 
+  const primaryImg = sanitizeProductImage(product.images?.[0], 0);
+  const secondaryImg = product.images?.[1] ? sanitizeProductImage(product.images[1], 1) : null;
+
   const handleQuickAdd = (stitching: 'unstitched' | 'stitched_standard') => {
     setIsAdding(true);
     setTimeout(() => {
@@ -43,7 +46,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       setIsAdding(false);
       setJustAdded(true);
       setQuickAddOpen(false);
-      setTimeout(() => setJustAdded(false), 2500);
+      setTimeout(() => setJustAdded(false), 2200);
     }, 350);
   };
 
@@ -65,19 +68,19 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="relative block w-full h-full"
         >
           <Image
-            src={product.images[0]}
+            src={primaryImg}
             alt={product.title}
             fill
             className={`object-cover object-top transition-transform duration-700 ease-out ${
-              isHovered && product.images[1] ? 'opacity-0' : 'opacity-100 group-hover:scale-103'
+              isHovered && secondaryImg ? 'opacity-0' : 'opacity-100 group-hover:scale-103'
             }`}
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
 
           {/* Secondary Hover Image */}
-          {product.images[1] && (
+          {secondaryImg && (
             <Image
-              src={product.images[1]}
+              src={secondaryImg}
               alt={`${product.title} preview`}
               fill
               className={`object-cover object-top transition-all duration-700 ease-out absolute inset-0 ${
