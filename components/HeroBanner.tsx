@@ -90,9 +90,9 @@ export default function HeroBanner() {
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Main Visual Card */}
-              <Link href="/products/prod-1" className="block relative rounded-xs overflow-hidden shadow-xl border border-[#E5E2D9] aspect-3/4 bg-[#EBE9E1] group">
+              <Link href="/products/peh-lwn-01" className="block relative rounded-xs overflow-hidden shadow-xl border border-[#E5E2D9] aspect-3/4 bg-[#EBE9E1] group">
                 <Image
-                  src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80"
+                  src="/images/hero/hero_banner.jpg"
                   alt="Pakistani Luxury Lawn Suit Collection 2026"
                   fill
                   priority
@@ -111,7 +111,7 @@ export default function HeroBanner() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-[10px] uppercase tracking-widest text-[#8B4513] font-bold">
-                        Maria B. & Sana Safinaz
+                        Unstitched Elegance
                       </div>
                       <div className="text-xs font-bold text-[#1A1A1A]">
                         Pure Swiss Voile & Organza Cutwork
