@@ -57,7 +57,7 @@ export default function CategoryPills() {
 
             return (
               <button
-                key={pill.category}
+                key={pill.label}
                 onClick={() => handleSelect(pill.category)}
                 className={`flex items-center gap-2 px-3.5 py-2 rounded-xs text-[11px] uppercase tracking-wider font-semibold whitespace-nowrap transition-all duration-200 shrink-0 border ${
                   isActive
