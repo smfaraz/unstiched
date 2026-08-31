@@ -53,6 +53,24 @@ export default function Navbar() {
   const searchRef = useRef<HTMLDivElement>(null);
   const navContainerRef = useRef<HTMLDivElement>(null);
 
+  // Auto-close mobile menu on route change & prevent background scroll
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setSearchOpen(false);
+    setActiveDropdown(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   // Close search suggestions on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -659,18 +677,31 @@ export default function Navbar() {
       )}
 
       {/* Mobile Drawer Menu (Hierarchical Progressive Disclosure) */}
+      {/* Mobile Drawer Menu (Hierarchical Progressive Disclosure) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex">
-          <div className="w-4/5 max-w-sm bg-[#FAF9F6] h-full overflow-y-auto p-5 shadow-2xl flex flex-col justify-between border-r border-[#E5E2D9] animate-in slide-in-from-left duration-300">
-            <div className="space-y-5">
+        <div
+          className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div
+            className="w-[85%] max-w-sm bg-[#FAF9F6] h-full overflow-y-auto p-4 sm:p-5 shadow-2xl flex flex-col justify-between border-r border-[#E5E2D9] animate-in slide-in-from-left duration-250"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="space-y-4">
               {/* Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-[#E5E2D9]">
-                <div className="font-serif text-lg font-bold tracking-tight uppercase text-[#1A1A1A]">
-                  UNSTITCHED LUXE
+              <div className="flex items-center justify-between pb-3 border-b border-[#E5E2D9]">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-serif text-lg font-bold tracking-tight uppercase text-[#1A1A1A]">
+                    UNSTITCHED
+                  </span>
+                  <span className="text-[8px] bg-[#8B4513] text-white px-1.5 py-0.2 rounded-xs font-bold uppercase tracking-widest">
+                    LUXE
+                  </span>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1 text-[#1A1A1A] hover:bg-[#E5E2D9] rounded-xs"
+                  className="p-2 text-[#1A1A1A] hover:bg-[#E5E2D9] rounded-xs transition active:scale-95"
+                  aria-label="Close navigation menu"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -681,66 +712,91 @@ export default function Navbar() {
                 <Link
                   href="/products"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="bg-black text-white py-2 rounded-xs font-bold uppercase tracking-wider text-[10px]"
+                  className="bg-black text-white py-2.5 rounded-xs font-bold uppercase tracking-wider text-[10px] shadow-xs active:bg-[#222]"
                 >
                   Shop All Suits
                 </Link>
                 <Link
                   href="/track-order"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="bg-[#F2F0E9] text-[#1A1A1A] py-2 rounded-xs font-bold uppercase tracking-wider text-[10px] border border-[#E5E2D9]"
+                  className="bg-white text-[#1A1A1A] py-2.5 rounded-xs font-bold uppercase tracking-wider text-[10px] border border-[#E5E2D9] shadow-xs active:bg-[#F2F0E9]"
                 >
                   Track Order
                 </Link>
               </div>
 
               {/* Accordion Categories */}
-              <div className="space-y-2 text-xs">
-                {NAV_PILLARS.map((pillar) => (
-                  <div key={pillar.id} className="border border-[#E5E2D9] rounded-xs bg-white overflow-hidden">
-                    <button
-                      onClick={() => setMobileAccordion(mobileAccordion === pillar.id ? null : pillar.id)}
-                      className="w-full p-3 flex items-center justify-between font-bold text-[#1A1A1A] uppercase tracking-wider text-[11px] text-left hover:bg-[#FAF9F6]"
-                    >
-                      <span className="flex items-center gap-1.5">
-                        {pillar.isSpecial && <Sparkles className="w-3.5 h-3.5 text-[#8B4513]" />}
-                        <span>{pillar.label}</span>
-                      </span>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          mobileAccordion === pillar.id ? 'rotate-180 text-[#8B4513]' : ''
+              <div className="space-y-1.5 text-xs">
+                {NAV_PILLARS.map((pillar) => {
+                  const isOpen = mobileAccordion === pillar.id;
+                  return (
+                    <div key={pillar.id} className="border border-[#E5E2D9] rounded-xs bg-white overflow-hidden shadow-2xs">
+                      <button
+                        onClick={() => setMobileAccordion(isOpen ? null : pillar.id)}
+                        className={`w-full p-3 flex items-center justify-between font-bold text-[#1A1A1A] uppercase tracking-wider text-[11px] text-left transition ${
+                          isOpen ? 'bg-[#F5F2EB] text-[#8B4513]' : 'hover:bg-[#FAF9F6]'
                         }`}
-                      />
-                    </button>
+                      >
+                        <span className="flex items-center gap-1.5">
+                          {pillar.isSpecial && <Sparkles className="w-3.5 h-3.5 text-[#8B4513]" />}
+                          <span>{pillar.label}</span>
+                          {pillar.badge && (
+                            <span className="text-[8.5px] bg-[#8B4513] text-white px-1.5 py-0.2 rounded-xs">
+                              {pillar.badge}
+                            </span>
+                          )}
+                        </span>
+                        <ChevronDown
+                          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                            isOpen ? 'rotate-180 text-[#8B4513]' : 'text-[#888]'
+                          }`}
+                        />
+                      </button>
 
-                    {mobileAccordion === pillar.id && (
-                      <div className="p-3 bg-[#FAF9F6] border-t border-[#E5E2D9] space-y-2">
-                        {pillar.megaMenu.columns.flatMap((col: MegaMenuColumn) => col.links).map((link: MegaMenuLink, idx: number) => (
-                          <div key={idx}>
-                            {link.href ? (
-                              <Link
-                                href={link.href}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="block py-1 text-xs text-[#555] hover:text-[#8B4513]"
-                              >
-                                • {link.label}
-                              </Link>
-                            ) : (
-                              <button
-                                onClick={() => {
-                                  if (link.cat) navigateCategory(link.cat);
-                                }}
-                                className="block py-1 text-xs text-[#555] hover:text-[#8B4513] text-left w-full"
-                              >
-                                • {link.label}
-                              </button>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      {isOpen && (
+                        <div className="p-3 bg-[#FAF9F6] border-t border-[#E5E2D9] space-y-2 animate-in fade-in duration-150">
+                          {/* Direct All Category Link */}
+                          <button
+                            onClick={() => {
+                              navigateCategory(pillar.label);
+                              setMobileMenuOpen(false);
+                            }}
+                            className="w-full text-left font-bold text-[11px] text-[#8B4513] uppercase tracking-wider pb-1.5 border-b border-[#E5E2D9] flex items-center justify-between"
+                          >
+                            <span>Explore All {pillar.label}</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </button>
+
+                          {pillar.megaMenu.columns.flatMap((col: MegaMenuColumn) => col.links).map((link: MegaMenuLink, idx: number) => (
+                            <div key={idx}>
+                              {link.href ? (
+                                <Link
+                                  href={link.href}
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  className="block py-1.5 text-xs text-[#555] hover:text-[#8B4513] active:text-black font-medium"
+                                >
+                                  • {link.label}
+                                </Link>
+                              ) : (
+                                <button
+                                  onClick={() => {
+                                    if (link.cat) {
+                                      navigateCategory(link.cat);
+                                    }
+                                    setMobileMenuOpen(false);
+                                  }}
+                                  className="block py-1.5 text-xs text-[#555] hover:text-[#8B4513] active:text-black text-left w-full font-medium"
+                                >
+                                  • {link.label}
+                                </button>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Auxiliary Quick Links */}
@@ -781,7 +837,7 @@ export default function Navbar() {
                   <ChevronRight className="w-3.5 h-3.5 text-[#AAA]" />
                 </Link>
 
-                {/* Direct WhatsApp Callout in Drawer */}
+                {/* Direct WhatsApp Stylist */}
                 <a
                   href="https://wa.me/919820089123?text=Hi%20Unstitched%20Luxe,%20I%20need%20help%20with%20sizing%20and%20suit%20curation"
                   target="_blank"
@@ -790,7 +846,7 @@ export default function Navbar() {
                 >
                   <span className="flex items-center gap-2">
                     <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>WhatsApp Stylist (Fast Reply)</span>
+                    <span>WhatsApp Stylist (Live)</span>
                   </span>
                   <span className="text-[9px] bg-[#2E7D32] text-white px-1.5 py-0.5 rounded-xs uppercase font-bold">Online</span>
                 </a>
@@ -806,7 +862,6 @@ export default function Navbar() {
               <p>© 2026 UNSTITCHED LUXE. All Rights Reserved.</p>
             </div>
           </div>
-          <div className="flex-1" onClick={() => setMobileMenuOpen(false)} />
         </div>
       )}
     </header>
