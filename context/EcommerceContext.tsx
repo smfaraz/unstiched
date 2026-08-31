@@ -156,7 +156,7 @@ const EcommerceContext = createContext<EcommerceContextType | undefined>(undefin
 export function EcommerceProvider({ children }: { children: React.ReactNode }) {
   const [products, setProducts] = useState<Product[]>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('pehnava_products_v3');
+      const saved = localStorage.getItem('pehnava_products_v4');
       if (saved) {
         try {
           const parsed: Product[] = JSON.parse(saved);
@@ -172,7 +172,9 @@ export function EcommerceProvider({ children }: { children: React.ReactNode }) {
       }
       // Migrate legacy cache
       localStorage.removeItem('pehnava_products');
-      localStorage.setItem('pehnava_products_v3', JSON.stringify(INITIAL_PRODUCTS));
+      localStorage.removeItem('pehnava_products_v2');
+      localStorage.removeItem('pehnava_products_v3');
+      localStorage.setItem('pehnava_products_v4', JSON.stringify(INITIAL_PRODUCTS));
     }
     return INITIAL_PRODUCTS;
   });
@@ -235,7 +237,7 @@ export function EcommerceProvider({ children }: { children: React.ReactNode }) {
   // Sync state to local storage
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('pehnava_products_v3', JSON.stringify(products));
+      localStorage.setItem('pehnava_products_v4', JSON.stringify(products));
     }
   }, [products]);
 
@@ -292,7 +294,7 @@ export function EcommerceProvider({ children }: { children: React.ReactNode }) {
   const couponDiscountAmount = appliedCoupon ? appliedCoupon.discountAmount : 0;
   const discountAmount = bundleDiscountAmount + couponDiscountAmount;
   const cartGrandTotal = Math.max(0, cartSubtotal + cartStitchingTotal - discountAmount);
-  const freeShippingThreshold = 1999;
+  const freeShippingThreshold = 1499;
   const freeShippingRemaining = Math.max(0, freeShippingThreshold - cartSubtotal);
 
   const nextTierInfo = cartCount === 0
@@ -312,8 +314,8 @@ export function EcommerceProvider({ children }: { children: React.ReactNode }) {
     customMeasurements?: CustomMeasurements
   ) => {
     let stitchingPrice = 0;
-    if (stitchingOption === 'stitched_standard') stitchingPrice = 1199;
-    if (stitchingOption === 'stitched_custom') stitchingPrice = 1499;
+    if (stitchingOption === 'stitched_standard') stitchingPrice = 499;
+    if (stitchingOption === 'stitched_custom') stitchingPrice = 799;
 
     const cartItemId = `${product.id}-${stitchingOption}-${selectedSize || 'none'}-${customMeasurements ? 'custom' : 'std'}`;
 

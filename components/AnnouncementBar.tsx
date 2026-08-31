@@ -30,7 +30,7 @@ export default function AnnouncementBar() {
       highlight: "Shop New Drops",
     },
     {
-      text: "🚀 Free Express Pan-India Shipping on orders above ₹1,999 via BlueDart Air",
+      text: "🚀 Free Express Pan-India Shipping on orders above ₹1,499 via BlueDart Air",
       highlight: "Check Pincode",
     },
   ];

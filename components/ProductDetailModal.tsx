@@ -328,7 +328,7 @@ export default function ProductDetailModal() {
                     }`}
                   >
                     <div className="text-xs font-bold text-[#1A1A1A]">Standard Stitched</div>
-                    <div className="text-[10px] text-[#8B4513] font-bold uppercase tracking-wider mt-0.5">+₹1,199 Fee</div>
+                    <div className="text-[10px] text-[#8B4513] font-bold uppercase tracking-wider mt-0.5">+₹499 Fee</div>
                     <div className="text-[10px] text-[#777] mt-1">Sizes XS to 6XL</div>
                   </button>
 
@@ -343,7 +343,7 @@ export default function ProductDetailModal() {
                     }`}
                   >
                     <div className="text-xs font-bold text-[#1A1A1A]">Custom Tailoring</div>
-                    <div className="text-[10px] text-[#8B4513] font-bold uppercase tracking-wider mt-0.5">+₹1,499 Fee</div>
+                    <div className="text-[10px] text-[#8B4513] font-bold uppercase tracking-wider mt-0.5">+₹799 Fee</div>
                     <div className="text-[10px] text-[#777] mt-1">Exact Measurements</div>
                   </button>
                 </div>

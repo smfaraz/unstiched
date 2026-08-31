@@ -415,7 +415,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   </div>
                 </div>
                 <span className="text-xs font-bold text-black">
-                  +{formatPrice(1199)}
+                  +{formatPrice(499)}
                 </span>
               </label>
 
@@ -484,7 +484,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   </div>
                 </div>
                 <span className="text-xs font-bold text-black">
-                  +{formatPrice(1499)}
+                  +{formatPrice(799)}
                 </span>
               </label>
 

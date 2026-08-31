@@ -157,7 +157,7 @@ export default function Navbar() {
         featuredProduct: {
           title: 'Botanical Laser Cutwork Luxury 3-Piece',
           subtitle: 'Cotton Satin & Organza Dupatta',
-          price: 5850,
+          price: 2499,
           image: '/images/products/blue_cutwork_suit.jpg',
           category: 'New Arrivals',
         },
@@ -191,7 +191,7 @@ export default function Navbar() {
         featuredProduct: {
           title: 'Pure Swiss Voile Lawn with Schiffli Cutwork',
           subtitle: 'Original Weave with Hologram Seal',
-          price: 4499,
+          price: 2199,
           image: '/images/products/pink_lawn_suit.jpg',
           category: 'Unstitched Elegance',
         },
@@ -225,7 +225,7 @@ export default function Navbar() {
         featuredProduct: {
           title: 'Executive Zari & Dori Self-Jacquard 3-Piece',
           subtitle: 'Ruby Red & Antique Gold Tilla',
-          price: 6999,
+          price: 2699,
           image: '/images/products/emerald_festive_suit.jpg',
           category: 'Formal Wear',
         },
@@ -259,7 +259,7 @@ export default function Navbar() {
         featuredProduct: {
           title: 'Curves Edition Pure Lawn 3-Piece Ensemble',
           subtitle: 'Available up to 4XL (48 Bust)',
-          price: 5200,
+          price: 1799,
           image: '/images/products/peach_curves_suit.jpg',
           category: 'Ready to Wear',
         },
@@ -293,7 +293,7 @@ export default function Navbar() {
         featuredProduct: {
           title: 'Heirloom Craftsmanship & Barcode Seal',
           subtitle: 'Direct Weave Verification',
-          price: 4999,
+          price: 1899,
           image: '/images/hero/hero_banner.jpg',
           href: '/about',
         },
