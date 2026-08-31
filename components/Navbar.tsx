@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   ChevronRight,
   SlidersHorizontal,
+  MessageCircle,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -759,6 +760,20 @@ export default function Navbar() {
                   </span>
                   <ChevronRight className="w-3.5 h-3.5 text-[#AAA]" />
                 </Link>
+
+                {/* Direct WhatsApp Callout in Drawer */}
+                <a
+                  href="https://wa.me/919820089123?text=Hi%20Unstitched%20Luxe,%20I%20need%20help%20with%20sizing%20and%20suit%20curation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-2.5 px-3 rounded-xs bg-[#E8F5E9] border border-[#C8E6C9] text-[#2E7D32] font-semibold mt-2"
+                >
+                  <span className="flex items-center gap-2">
+                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <span>WhatsApp Stylist (Fast Reply)</span>
+                  </span>
+                  <span className="text-[9px] bg-[#2E7D32] text-white px-1.5 py-0.5 rounded-xs uppercase font-bold">Online</span>
+                </a>
               </div>
             </div>
 
