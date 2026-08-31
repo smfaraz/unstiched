@@ -91,20 +91,24 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </Link>
 
-        {/* Top Badges */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10 pointer-events-none">
+        {/* Bottom Photo Badges */}
+        <div
+          className={`absolute bottom-2 left-2 flex items-center gap-1 z-10 pointer-events-none flex-wrap transition-opacity duration-200 ${
+            isHovered ? 'opacity-0 sm:opacity-0' : 'opacity-100'
+          }`}
+        >
           {product.isNewArrival && (
-            <span className="bg-black text-white text-[9px] font-bold px-2 py-0.5 rounded-xs uppercase tracking-widest shadow-xs">
+            <span className="bg-black/90 backdrop-blur-xs text-white text-[8.5px] sm:text-[9px] font-bold px-1.5 sm:px-2 py-0.5 rounded-xs uppercase tracking-wider shadow-xs">
               New Arrival
             </span>
           )}
           {product.isBestseller && (
-            <span className="bg-[#8B4513] text-white text-[9px] font-bold px-2 py-0.5 rounded-xs uppercase tracking-widest shadow-xs">
+            <span className="bg-[#8B4513]/90 backdrop-blur-xs text-white text-[8.5px] sm:text-[9px] font-bold px-1.5 sm:px-2 py-0.5 rounded-xs uppercase tracking-wider shadow-xs">
               ★ Popular
             </span>
           )}
           {product.stockCount <= 5 && (
-            <span className="bg-[#FAF5EE] text-[#8B4513] text-[9px] font-bold px-2 py-0.5 rounded-xs uppercase tracking-wider border border-[#E8DFC8] shadow-xs">
+            <span className="bg-[#FAF5EE]/95 text-[#8B4513] text-[8.5px] sm:text-[9px] font-bold px-1.5 py-0.5 rounded-xs uppercase tracking-wider border border-[#E8DFC8] shadow-xs">
               Only {product.stockCount} Left
             </span>
           )}
