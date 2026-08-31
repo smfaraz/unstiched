@@ -137,31 +137,31 @@ export default function ProductGrid() {
     (filters.searchQuery ? 1 : 0);
 
   return (
-    <section id="products-collection" className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+    <section id="products-collection" className="w-full">
       {/* Header & Sort Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#E5E2D9]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-4 border-b border-[#E5E2D9]">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-[#1A1A1A] uppercase tracking-tight">
-              {filters.category === 'All' ? 'Authentic Pakistani Suits & Lawn' : filters.category}
+            <h2 className="text-lg sm:text-2xl font-serif font-bold text-[#1A1A1A] uppercase tracking-tight">
+              {filters.category === 'All' ? 'Pakistani Lawn & Designer Suits' : filters.category}
             </h2>
             {filters.searchQuery && (
-              <span className="text-[10px] bg-[#F2F0E9] text-[#8B4513] px-2.5 py-1 rounded-xs font-bold uppercase tracking-widest border border-[#E5E2D9]">
-                Search: &quot;{filters.searchQuery}&quot;
+              <span className="text-[10px] bg-[#F2F0E9] text-[#8B4513] px-2 py-0.5 rounded-xs font-bold uppercase tracking-widest border border-[#E5E2D9]">
+                &quot;{filters.searchQuery}&quot;
               </span>
             )}
           </div>
-          <p className="text-xs sm:text-sm text-[#777] mt-1">
-            Showing <strong>{filteredProducts.length}</strong> curated luxury pieces with express Pan-India shipping
+          <p className="text-[11px] sm:text-xs text-[#777] mt-0.5">
+            <strong>{filteredProducts.length}</strong> authentic luxury pieces • Pan-India Free Delivery
           </p>
         </div>
 
         {/* Action Controls & Sort Dropdown */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between sm:justify-end gap-2">
           {/* Mobile Filter Button */}
           <button
             onClick={() => setMobileFilterOpen(true)}
-            className="lg:hidden flex items-center gap-2 bg-white border border-[#E5E2D9] px-3.5 py-2 rounded-xs text-[11px] uppercase tracking-wider font-bold text-[#1A1A1A] shadow-xs"
+            className="lg:hidden flex items-center gap-1.5 bg-white border border-[#E5E2D9] px-3 py-1.5 rounded-xs text-[10.5px] uppercase tracking-wider font-bold text-[#1A1A1A] shadow-2xs"
             id="mobile-filter-drawer-open-btn"
           >
             <SlidersHorizontal className="w-3.5 h-3.5 text-[#8B4513]" />
@@ -174,9 +174,8 @@ export default function ProductGrid() {
           </button>
 
           {/* Sort Dropdown */}
-          <div className="flex items-center gap-2 bg-white border border-[#E5E2D9] px-3 py-2 rounded-xs text-[11px] shadow-xs uppercase tracking-wider">
-            <ArrowUpDown className="w-3.5 h-3.5 text-[#8B4513]" />
-            <label htmlFor="sort-by-select" className="text-[#777] font-semibold hidden sm:inline">Sort by:</label>
+          <div className="flex items-center gap-1.5 bg-white border border-[#E5E2D9] px-2.5 py-1.5 rounded-xs text-[10.5px] shadow-2xs uppercase tracking-wider">
+            <ArrowUpDown className="w-3 h-3 text-[#8B4513]" />
             <select
               id="sort-by-select"
               aria-label="Sort products by"
@@ -187,14 +186,14 @@ export default function ProductGrid() {
                   sortBy: e.target.value as ProductFilter['sortBy'],
                 }))
               }
-              className="bg-transparent font-bold text-[#1A1A1A] focus:outline-none cursor-pointer text-xs"
+              className="bg-transparent font-bold text-[#1A1A1A] focus:outline-none cursor-pointer text-[11px]"
             >
-              <option value="featured">Featured & Trending</option>
+              <option value="featured">Featured</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
-              <option value="rating-desc">Customer Rating</option>
-              <option value="discount-desc">Highest Discount</option>
-              <option value="newest">New Arrivals</option>
+              <option value="rating-desc">Rating</option>
+              <option value="discount-desc">Discount</option>
+              <option value="newest">New Drops</option>
             </select>
           </div>
         </div>

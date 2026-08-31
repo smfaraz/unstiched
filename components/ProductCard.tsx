@@ -193,7 +193,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className="w-full text-left bg-[#FAF9F6] hover:bg-[#F2F0E9] p-2 rounded-xs text-xs font-semibold text-[#1A1A1A] flex items-center justify-between border border-[#E5E2D9] transition active:scale-98"
               >
                 <span>Ready to Wear (M – 38)</span>
-                <span className="text-[10px] text-black font-bold">+₹1,199</span>
+                <span className="text-[10px] text-black font-bold">+₹499</span>
               </button>
               <Link
                 href={`/products/${product.id}`}
@@ -207,14 +207,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Product Details Area */}
-      <div className="p-3.5 sm:p-4 flex flex-col justify-between flex-1 gap-2">
+      <div className="p-2.5 sm:p-4 flex flex-col justify-between flex-1 gap-1.5 sm:gap-2">
         <div>
           {/* Brand & Authentic Badge */}
-          <div className="flex items-center justify-between text-[11px] mb-1">
-            <span className="font-bold text-[#8B4513] uppercase tracking-widest text-[10px]">
+          <div className="flex items-center justify-between text-[10px] sm:text-[11px] mb-1">
+            <span className="font-bold text-[#8B4513] uppercase tracking-widest text-[9.5px] sm:text-[10px]">
               {product.brand}
             </span>
-            <span className="text-[9px] text-[#777] font-medium bg-[#FAF9F6] px-1.5 py-0.5 rounded-xs border border-[#E5E2D9] uppercase tracking-wider">
+            <span className="text-[8.5px] sm:text-[9px] text-[#777] font-medium bg-[#FAF9F6] px-1.5 py-0.2 sm:py-0.5 rounded-xs border border-[#E5E2D9] uppercase tracking-wider">
               {product.fabric}
             </span>
           </div>
@@ -222,49 +222,48 @@ export default function ProductCard({ product }: ProductCardProps) {
           {/* Title */}
           <Link
             href={`/products/${product.id}`}
-            className="text-xs sm:text-sm font-serif font-semibold text-[#1A1A1A] line-clamp-2 hover:text-[#8B4513] cursor-pointer transition leading-snug block"
+            className="text-xs sm:text-sm font-serif font-semibold text-[#1A1A1A] line-clamp-1 sm:line-clamp-2 hover:text-[#8B4513] cursor-pointer transition leading-snug block"
             title={product.title}
           >
             {product.title}
           </Link>
 
           {/* Rating */}
-          <div className="flex items-center gap-1.5 mt-1.5">
-            <div className="flex items-center bg-[#FAF9F6] text-[#1A1A1A] px-1.5 py-0.5 rounded-xs border border-[#E5E2D9] text-[10px] font-bold">
-              <Star className="w-3 h-3 fill-[#8B4513] text-[#8B4513] mr-1" />
+          <div className="flex items-center gap-1.5 mt-1 sm:mt-1.5">
+            <div className="flex items-center bg-[#FAF9F6] text-[#1A1A1A] px-1.5 py-0.2 sm:py-0.5 rounded-xs border border-[#E5E2D9] text-[9.5px] sm:text-[10px] font-bold">
+              <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-[#8B4513] text-[#8B4513] mr-1" />
               <span>{product.rating}</span>
             </div>
-            <span className="text-[10px] text-[#777]">({product.reviewCount})</span>
-            <span className="text-[10px] text-[#555] font-medium ml-auto flex items-center gap-0.5">
-              <ShieldCheck className="w-3 h-3 text-[#8B4513]" />
-              <span className="hidden sm:inline">100% Original</span>
+            <span className="text-[9.5px] sm:text-[10px] text-[#777]">({product.reviewCount})</span>
+            <span className="text-[9px] sm:text-[10px] text-[#2E7D32] font-semibold ml-auto hidden sm:flex items-center gap-0.5">
+              <ShieldCheck className="w-3 h-3 text-[#2E7D32]" />
+              <span>Original</span>
             </span>
           </div>
         </div>
 
         {/* Price & Mobile Add CTA */}
-        <div className="pt-2 border-t border-[#F2F0E9]">
-          <div className="flex items-baseline justify-between">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-sm sm:text-base font-bold text-black">
+        <div className="pt-1.5 sm:pt-2 border-t border-[#F2F0E9]">
+          <div className="flex items-baseline justify-between gap-1">
+            <div className="flex items-baseline gap-1 sm:gap-1.5 flex-wrap">
+              <span className="text-xs sm:text-base font-serif font-bold text-black">
                 {formatPrice(product.price)}
               </span>
-              <span className="text-xs text-[#888] line-through">
+              <span className="text-[10px] sm:text-xs text-[#888] line-through">
                 {formatPrice(product.originalPrice)}
               </span>
             </div>
-            <span className="text-[10px] text-[#8B4513] font-bold uppercase tracking-wider">
-              Save {formatPrice(product.originalPrice - product.price)}
+            <span className="text-[9px] sm:text-[10px] text-[#8B4513] font-bold uppercase tracking-wider shrink-0 bg-[#FAF5EE] px-1 py-0.2 rounded-xs border border-[#E8DFC8]">
+              {product.discountPercent}% OFF
             </span>
           </div>
 
-          {/* Mobile direct button */}
+          {/* Mobile Direct Button */}
           <Link
             href={`/products/${product.id}`}
-            className="sm:hidden mt-2 w-full bg-black active:bg-[#222] text-white py-2 rounded-xs text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-1.5 shadow-xs"
+            className="sm:hidden mt-2 w-full bg-black active:bg-[#222] text-white py-1.5 rounded-xs text-[10.5px] uppercase tracking-wider font-bold flex items-center justify-center gap-1 shadow-xs"
           >
-            <ShoppingBag className="w-3.5 h-3.5 text-white" />
-            <span>Select Options</span>
+            <span>View & Style</span>
           </Link>
         </div>
       </div>
