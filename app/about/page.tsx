@@ -77,8 +77,8 @@ export default function AboutPage() {
 
         <div className="lg:col-span-6 relative aspect-4/3 w-full bg-[#EBE9E1] rounded-xs overflow-hidden border border-[#E5E2D9] shadow-md">
           <Image
-            src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80"
-            alt="Pehnava Lawns Craftsmanship"
+            src="/images/hero/hero_banner.jpg"
+            alt="Unstitched Luxe Pakistani Craftsmanship"
             fill
             className="object-cover"
           />

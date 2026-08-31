@@ -21,68 +21,75 @@ const COLLECTION_METADATA: Record<
     bannerImage: string;
   }
 > = {
-  'swiss-voile': {
-    title: 'Pure Swiss Voile Lawn Suits',
-    categoryMatch: 'Swiss Voile',
+  'unstitched-elegance': {
+    title: 'Unstitched Elegance: Pure Swiss Voile Lawn Suits',
+    categoryMatch: 'Unstitched Elegance',
     tagline: '80s & 100s Ultra-Fine Combed Summer Weaves',
     description: 'The gold standard of Pakistani summer fabric. Ultra-fine Swiss Voile yarns dyed in rich pastel tones, paired with airy dupattas for peak breathable comfort.',
-    bannerImage: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/pink_lawn_suit.jpg',
+  },
+  'swiss-voile': {
+    title: 'Pure Swiss Voile Lawn Suits',
+    categoryMatch: 'Unstitched Elegance',
+    tagline: '80s & 100s Ultra-Fine Combed Summer Weaves',
+    description: 'The gold standard of Pakistani summer fabric. Ultra-fine Swiss Voile yarns dyed in rich pastel tones, paired with airy dupattas for peak breathable comfort.',
+    bannerImage: '/images/products/pink_lawn_suit.jpg',
   },
   'schiffli-cutwork': {
     title: 'Schiffli & Chikankari Cutwork Suits',
-    categoryMatch: 'Schiffli Cutwork',
+    categoryMatch: 'Festive Glam',
     tagline: 'Laser Cutwork & Resham Thread Needlecraft',
     description: 'Intricate open-work laser schiffli embroidery, delicate scalloped borders, and artisanal chikankari needlework crafted on pure cotton lawns.',
-    bannerImage: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/mint_chikankari_suit.jpg',
   },
-  'pure-lawn': {
-    title: 'Pure Cotton Lawn 3-Piece Suits',
-    categoryMatch: 'Pure Lawn',
-    tagline: 'Classic Breathable 3-Piece Cotton Sets',
-    description: 'Authentic 3-piece Pakistani unstitched lawn suits featuring 3.25m shirt fabric, printed dupattas, and cambric trousers for everyday elegance.',
-    bannerImage: 'https://images.unsplash.com/photo-1563178406-4cdc2923acbc?auto=format&fit=crop&w=1600&q=80',
-  },
-  'curves-plus-size': {
-    title: 'Curves Edition: Pakistani Suits from XL to 6XL',
-    categoryMatch: 'Curves (XL-6XL)',
-    tagline: 'Inclusive Luxury Tailoring & Generous Sizing',
-    description: 'Designed exclusively for fuller South Asian silhouettes. Extended fabric yardage, tailored bust measurements from 42" to 56", and comfortable deep-cut armholes.',
-    bannerImage: 'https://images.unsplash.com/photo-1574634534894-89d7576c8259?auto=format&fit=crop&w=1600&q=80',
-  },
-  'festive-formals': {
-    title: 'Festive Formals & Zari Jacquard',
-    categoryMatch: 'Festive Formals',
+  'festive-glam': {
+    title: 'Festive Glam & The Celebration Edit',
+    categoryMatch: 'Festive Glam',
     tagline: 'Zari, Sequins & Organza Couture for Celebrations',
     description: 'Royal festive attire featuring tilla embroidery, hand-worked crystal embellishments, and sheer organza dupattas for weddings and celebratory evenings.',
-    bannerImage: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/emerald_festive_suit.jpg',
   },
-  'chiffon-organza': {
-    title: 'Chiffon & Pure Organza Suits',
-    categoryMatch: 'Chiffon & Organza',
+  'formal-wear': {
+    title: 'Formal Wear & Executive Style',
+    categoryMatch: 'Formal Wear',
+    tagline: 'Zari, Tilla & Power Dressing Suits',
+    description: 'Regal showstoppers crafted on rich self-jacquard lawns with gold dori cord embroidery, antique tilla work, and banarasi dupattas.',
+    bannerImage: '/images/products/emerald_festive_suit.jpg',
+  },
+  'ready-to-wear': {
+    title: 'Ready to Wear / Style Now (S to 4XL / 48)',
+    categoryMatch: 'Ready to Wear',
+    tagline: 'Inclusive Luxury Tailoring & Generous Sizing',
+    description: 'Designed exclusively for fuller South Asian silhouettes. Extended fabric yardage, tailored bust measurements from 36 to 48 inches.',
+    bannerImage: '/images/products/peach_curves_suit.jpg',
+  },
+  'modern-edit': {
+    title: 'The Modern Edit & Contemporary Suits',
+    categoryMatch: 'The Modern Edit',
     tagline: 'Featherweight Breathable Silk Chiffon & Tissue',
     description: 'Lightweight ethereal ensembles suited for warm climates with delicate laser-cut borders, pearl accents, and flowing dupattas.',
-    bannerImage: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/lavender_chiffon_suit.jpg',
   },
-  'cotton-satin': {
-    title: 'Cotton Satin Luxury Weaves',
-    categoryMatch: 'Cotton Satin',
-    tagline: 'Lustrous Sheen & Silky Soft Handfeel',
-    description: 'Cotton Satin weaves combining pure cotton breathability with an understated lustrous gloss, paired with woven tissue jacquard dupattas.',
-    bannerImage: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1600&q=80',
+  'new-arrivals': {
+    title: 'New Arrivals & Botanical Laser Cutwork',
+    categoryMatch: 'New Arrivals',
+    tagline: 'Fresh Season Drop & 3D Floral Appliques',
+    description: 'Fresh Season Drop featuring layered laser cutwork, delicate pastel resham embroidery on glossy cotton satin, and pure silk organza dupattas.',
+    bannerImage: '/images/products/blue_cutwork_suit.jpg',
   },
-  'under-1999': {
-    title: 'Under ₹1999 Budget Luxury Edit',
-    categoryMatch: 'Under ₹1999',
+  'ethnic-daily-wear': {
+    title: 'Ethnic Daily Wear & Cambric Cotton Suits',
+    categoryMatch: 'Ethnic Daily Wear',
     tagline: 'Everyday Pakistani Floral Prints & Cambric Cottons',
     description: 'Affordable authentic Pakistani printed lawn and kurti sets for everyday elegance, workwear, and casual outings.',
-    bannerImage: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/mustard_daily_suit.jpg',
   },
   'wedding-edition': {
     title: 'Wedding Edition & Royal Velvet',
-    categoryMatch: 'Wedding Edition',
+    categoryMatch: 'Festive Glam',
     tagline: 'Opulent Embroidered Velvet & Raw Silk Formals',
     description: 'Masterpiece wedding suits featuring heavy hand embellishments, velvet shawls, and bespoke gharara & farshi salwar tailoring.',
-    bannerImage: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/maroon_velvet_suit.jpg',
   },
 };
 
@@ -95,7 +102,7 @@ export default function CollectionDetailPage({ params }: PageProps) {
     categoryMatch: resolvedParams.slug,
     tagline: 'Authentic Pakistani Designer Originals',
     description: 'Curated Pakistani suits imported directly with Pan-India express shipping and boutique tailoring.',
-    bannerImage: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/hero/hero_banner.jpg',
   };
 
   const collectionProducts = products.filter(

@@ -51,8 +51,8 @@ export default function AdminProductManagerModal() {
     suitType: '3-Piece Unstitched',
     description: 'Authentic Pakistani luxury lawn suit with delicate thread embroidery, digital organza dupatta, and dyed cotton trouser.',
     images: [
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80',
+      '/images/products/pink_lawn_suit.jpg',
+      '/images/products/mint_chikankari_suit.jpg',
     ],
     colors: [{ name: 'Emerald Crimson', hex: '#6B1428' }],
     availableSizes: ['Unstitched', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'Custom Stitching'],

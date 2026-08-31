@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
       isFastDispatch24h: !!body.isFastDispatch24h,
       images: body.images?.length
         ? body.images
-        : ['https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80'],
+        : ['/images/products/pink_lawn_suit.jpg', '/images/products/blue_cutwork_suit.jpg'],
       colors: body.colors || [{ name: 'Multi', hex: '#8B1E3F' }],
       availableSizes: body.availableSizes || ['Unstitched', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'Custom Stitching'],
       pieceDetails: body.pieceDetails || {

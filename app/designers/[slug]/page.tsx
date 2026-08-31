@@ -23,58 +23,58 @@ const DESIGNER_PROFILES: Record<
     specialties: string[];
   }
 > = {
-  'maria-b': {
-    name: 'Maria B.',
-    brandMatch: 'Maria B.',
+  'unstitched-elegance': {
+    name: 'Unstitched Elegance',
+    brandMatch: 'Unstitched Elegance',
     origin: 'Lahore, Pakistan',
     tagline: 'Signature Luxury Embroidered Lawns & M.Prints',
     description: 'Pioneering Pakistani designer lawn with delicate schiffli borders, pure jacquard unstitched fabrics, and bespoke formal couture. Guaranteed 100% authentic original imports.',
-    bannerImage: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80',
-    specialties: ['Swiss Voile Lawn', 'Schiffli Cutwork', 'Digital Silk Dupattas', 'M.Prints'],
+    bannerImage: '/images/products/pink_lawn_suit.jpg',
+    specialties: ['Swiss Voile Lawn', 'Schiffli Cutwork', 'Digital Silk Dupattas', 'Pure Weaves'],
   },
-  'sana-safinaz': {
-    name: 'Sana Safinaz',
-    brandMatch: 'Sana Safinaz',
+  'festive-glam': {
+    name: 'Festive Glam',
+    brandMatch: 'Festive Glam',
     origin: 'Karachi, Pakistan',
-    tagline: 'Muzlin & Mahay Summer Chiffon Collections',
+    tagline: 'Chikankari & Celebration Chiffon Collections',
     description: 'Renowned for striking jewel tones, contemporary prints, and featherlight fabrics tailored for hot South Asian summers and festive occasions.',
-    bannerImage: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1600&q=80',
-    specialties: ['Muzlin Lawn', 'Chiffon Dupattas', 'Mahay Series', 'Silk Tunics'],
+    bannerImage: '/images/products/mint_chikankari_suit.jpg',
+    specialties: ['Pure Lawn', 'Chiffon Dupattas', 'Chikankari Series', 'Silk Tunics'],
   },
-  'asim-jofa': {
-    name: 'Asim Jofa',
-    brandMatch: 'Asim Jofa',
+  'formal-wear': {
+    name: 'Formal Wear',
+    brandMatch: 'Formal Wear',
     origin: 'Karachi, Pakistan',
     tagline: 'Royal Zari, Organza & Festive Formals',
     description: 'Regal bridal and formal attire infused with metallic gold and antique silver zari work, organza panels, and rich raw silk trousers.',
-    bannerImage: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/emerald_festive_suit.jpg',
     specialties: ['Zari & Tilla Work', 'Organza Formals', 'Heavy Festive Pret', 'Luxury Jacquard'],
   },
-  'baroque': {
-    name: 'Baroque',
-    brandMatch: 'Baroque',
+  'the-modern-edit': {
+    name: 'The Modern Edit',
+    brandMatch: 'The Modern Edit',
     origin: 'Lahore, Pakistan',
-    tagline: 'Swiss Lawn & Chantelle Embroidered Couture',
-    description: 'Subtle elegance featuring romantic pastel palettes, intricate French schiffli lace borders, and breathable unstitched 3-piece ensembles.',
-    bannerImage: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=1600&q=80',
-    specialties: ['Chantelle Chiffon', 'Swiss Voile', 'Pastel Formals', 'Embroidered Lawn'],
+    tagline: 'Swiss Lawn & Contemporary Embroidered Couture',
+    description: 'Subtle elegance featuring romantic pastel palettes, intricate lace borders, and breathable unstitched 3-piece ensembles.',
+    bannerImage: '/images/products/lavender_chiffon_suit.jpg',
+    specialties: ['Chiffon Dupattas', 'Swiss Voile', 'Pastel Formals', 'Embroidered Lawn'],
   },
-  'crimson': {
-    name: 'Crimson',
-    brandMatch: 'Crimson',
+  'new-arrivals': {
+    name: 'New Arrivals',
+    brandMatch: 'New Arrivals',
     origin: 'Lahore, Pakistan',
     tagline: 'Heavy Laser Cutwork & Luxury Lawn',
     description: 'Statement fashion with bold botanical embroidery, multi-layered organza appliqués, and high-end silk finishes.',
-    bannerImage: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/blue_cutwork_suit.jpg',
     specialties: ['Laser Cutwork', 'Botanical Embroideries', 'Multi-panel Kurtas', 'Chiffon Dupattas'],
   },
-  'zara-shahjahan': {
-    name: 'Zara Shahjahan',
-    brandMatch: 'Zara Shahjahan',
+  'ethnic-daily-wear': {
+    name: 'Ethnic Daily Wear',
+    brandMatch: 'Ethnic Daily Wear',
     origin: 'Lahore, Pakistan',
     tagline: 'Vintage Florals & Heritage Craft',
     description: 'Nostalgic South Asian craft traditions brought alive with block-print inspirations, gota borders, and pure cotton lawn weaves.',
-    bannerImage: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/products/mustard_daily_suit.jpg',
     specialties: ['Vintage Florals', 'Gota Embellishments', 'Lawn 3-Piece', 'Cotton Cambric'],
   },
 };
@@ -89,7 +89,7 @@ export default function DesignerDetailPage({ params }: PageProps) {
     origin: 'Pakistan',
     tagline: 'Authentic Designer Couture',
     description: 'Direct imported Pakistani lawn and festive formal ensembles with authentic brand tags.',
-    bannerImage: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80',
+    bannerImage: '/images/hero/hero_banner.jpg',
     specialties: ['Pure Lawn', 'Embroidered Suits', 'Bespoke Tailoring'],
   };
 
