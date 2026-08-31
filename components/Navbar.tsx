@@ -324,15 +324,16 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E2D9] shadow-xs w-full max-w-full overflow-x-hidden" ref={navContainerRef}>
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         {/* Tier 1: Main Header Bar (Compact 50px on mobile, 72px on desktop) */}
-        <div className="flex items-center justify-between h-13 sm:h-20 gap-2 sm:gap-4">
+        <div className="flex items-center justify-between h-13 sm:h-20 gap-1.5 sm:gap-4">
           {/* Mobile Hamburger Menu Toggle */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 text-[#1A1A1A] hover:bg-[#F2F0E9] rounded-xs transition"
-            aria-label="Toggle Navigation Menu"
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            className="lg:hidden p-2 -ml-1 text-[#1A1A1A] hover:bg-[#F2F0E9] active:bg-[#E5E2D9] rounded-xs transition active:scale-95 flex items-center justify-center cursor-pointer min-w-[40px] min-h-[40px]"
+            aria-label="Open Navigation Menu"
             id="mobile-nav-toggle-btn"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <Menu className="w-5.5 h-5.5 text-[#1A1A1A] stroke-[2]" />
           </button>
 
           {/* Luxury Brand Entity (Unstitched Luxe) */}
@@ -341,6 +342,7 @@ export default function Navbar() {
             onClick={() => {
               setFilters((prev) => ({ ...prev, category: 'All', brand: [], searchQuery: '' }));
               setActiveDropdown(null);
+              setMobileMenuOpen(false);
             }}
             className="flex flex-col items-center sm:items-start cursor-pointer group select-none shrink-0"
             id="unstitched-brand-logo"
@@ -349,7 +351,7 @@ export default function Navbar() {
               <span className="font-serif text-lg sm:text-2xl md:text-3xl font-bold tracking-tight uppercase text-[#1A1A1A] group-hover:text-[#8B4513] transition-colors">
                 UNSTITCHED
               </span>
-              <span className="text-[8px] sm:text-[9px] font-sans bg-[#8B4513] text-white px-1 sm:px-1.5 py-0.2 sm:py-0.5 rounded-xs font-bold uppercase tracking-widest hidden sm:inline-block">
+              <span className="text-[8px] sm:text-[9px] font-sans bg-[#8B4513] text-white px-1 sm:px-1.5 py-0.2 sm:py-0.5 rounded-xs font-bold uppercase tracking-widest">
                 LUXE
               </span>
             </div>
