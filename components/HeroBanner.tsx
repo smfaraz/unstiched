@@ -22,7 +22,7 @@ export default function HeroBanner() {
             <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
               <Link
                 href="/products?category=Unstitched%20Elegance"
-                className="block relative rounded-xs overflow-hidden shadow-lg border border-[#E5E2D9] aspect-4/5 sm:aspect-3/4 bg-[#EBE9E1] group"
+                className="block relative rounded-xs overflow-hidden shadow-lg border border-[#E5E2D9] aspect-4/3 sm:aspect-3/4 bg-[#EBE9E1] group"
               >
                 <Image
                   src="/images/hero/hero_banner.jpg"

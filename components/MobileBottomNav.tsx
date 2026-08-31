@@ -63,12 +63,11 @@ export default function MobileBottomNav() {
         href="https://wa.me/919820089123?text=Hi%20Unstitched%20Luxe,%20I%20am%20exploring%20Pakistani%20designer%20suits%20and%20need%20assistance."
         target="_blank"
         rel="noopener noreferrer"
-        className="lg:hidden fixed bottom-16 right-3 z-40 bg-[#25D366] hover:bg-[#1EBE5D] text-white p-2.5 rounded-full shadow-2xl flex items-center gap-1.5 transition-transform active:scale-95 border border-white"
+        className="lg:hidden fixed bottom-[4.5rem] right-3.5 z-40 bg-[#25D366] hover:bg-[#1EBE5D] text-white w-10 h-10 rounded-full shadow-xl flex items-center justify-center transition-transform active:scale-90 border-2 border-white"
         aria-label="WhatsApp Styling Concierge"
         id="mobile-floating-whatsapp-btn"
       >
-        <MessageCircle className="w-4 h-4 fill-current" />
-        <span className="text-[10px] font-bold pr-0.5">Stylist</span>
+        <MessageCircle className="w-5 h-5 fill-current" />
       </a>
 
       {/* Fixed Native Mobile Bottom Tab Bar */}
