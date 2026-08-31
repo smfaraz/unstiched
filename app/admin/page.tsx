@@ -51,28 +51,28 @@ export default function AdminPage() {
 
   const handleAdvanceStatus = (orderId: string, currentStatus: Order['orderStatus']) => {
     const sequence: Order['orderStatus'][] = [
-      'confirmed',
-      'fabric_quality_check',
-      'in_tailoring',
-      'dispatched',
-      'out_for_delivery',
-      'delivered',
+      'Confirmed',
+      'Tailoring & QC',
+      'Dispatched',
+      'In Transit',
+      'Out for Delivery',
+      'Delivered',
     ];
     const currentIndex = sequence.indexOf(currentStatus);
-    if (currentIndex < sequence.length - 1) {
+    if (currentIndex >= 0 && currentIndex < sequence.length - 1) {
       const nextStatus = sequence[currentIndex + 1];
       const descMap: Record<Order['orderStatus'], { desc: string; loc: string }> = {
-        confirmed: { desc: 'Payment verified and inventory allocated.', loc: 'Central Fulfillment, New Delhi' },
-        fabric_quality_check: { desc: 'Master artisans verified 100s yarn quality & schiffli borders.', loc: 'Quality Atelier, Okhla Phase III' },
-        in_tailoring: { desc: 'Custom neckline and lining stitching in progress by master tailors.', loc: 'Bespoke Studio, Delhi' },
-        dispatched: { desc: 'Handed over to BlueDart Air Express. Tracking AWB live.', loc: 'IGI Airport Hub, New Delhi' },
-        out_for_delivery: { desc: 'Delivery executive assigned with doorstep OTP verification.', loc: 'Local City BlueDart Delivery Hub' },
-        delivered: { desc: 'Package delivered safely to customer with verified OTP.', loc: 'Customer Doorstep' },
-        cancelled: { desc: 'Order cancelled.', loc: 'Support Desk' },
+        'Confirmed': { desc: 'Payment verified and inventory allocated.', loc: 'Central Fulfillment, New Delhi' },
+        'Tailoring & QC': { desc: 'Master artisans verified 100s yarn quality & schiffli borders.', loc: 'Quality Atelier, Okhla Phase III' },
+        'Dispatched': { desc: 'Handed over to BlueDart Air Express. Tracking AWB live.', loc: 'IGI Airport Hub, New Delhi' },
+        'In Transit': { desc: 'Consignment in transit between express airport hubs.', loc: 'Regional Transit Hub' },
+        'Out for Delivery': { desc: 'Delivery executive assigned with doorstep OTP verification.', loc: 'Local City BlueDart Delivery Hub' },
+        'Delivered': { desc: 'Package delivered safely to customer with verified OTP.', loc: 'Customer Doorstep' },
+        'Cancelled': { desc: 'Order cancelled.', loc: 'Support Desk' },
       };
 
       updateOrderStatus(orderId, nextStatus, undefined, descMap[nextStatus].loc, descMap[nextStatus].desc);
-      setStatusUpdateToast(`Order #${orderId} status advanced to ${nextStatus.replace(/_/g, ' ')}!`);
+      setStatusUpdateToast(`Order #${orderId} status advanced to ${nextStatus}!`);
       setTimeout(() => setStatusUpdateToast(''), 3000);
     }
   };
@@ -89,78 +89,100 @@ export default function AdminPage() {
           <span className="text-black font-semibold">Store Operations & Admin Dashboard</span>
         </nav>
 
-        {/* Dashboard Header */}
-        <div className="bg-white border border-[#E5E2D9] rounded-xs p-6 sm:p-8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-1.5 bg-[#8B4513] text-white px-2.5 py-0.5 rounded-xs text-[10px] font-bold tracking-widest uppercase">
-              <ShieldCheck className="w-3 h-3" />
-              <span>Admin Management Hub</span>
+        {/* Header & Metrics */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#E5E2D9] pb-6">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="bg-[#8B4513] text-white text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-xs">
+                Admin Control Room
+              </span>
+              <span className="text-xs text-[#777]">Live Operations</span>
             </div>
-            <h1 className="font-serif text-2xl sm:text-3xl font-bold text-black">
-              UNSTITCHED Operations Portal
+            <h1 className="font-serif text-2xl sm:text-3xl font-bold text-black mt-1">
+              Unstitched Operations & Orders Studio
             </h1>
-            <p className="text-xs text-[#666]">
-              Manage live customer orders, BlueDart dispatch tracking, and luxury lawn catalog inventory.
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href="/products"
+              className="bg-black text-white px-4 py-2 rounded-xs text-xs font-bold uppercase tracking-wider hover:bg-[#8B4513] transition shadow-xs"
+            >
+              View Live Storefront
+            </Link>
+          </div>
+        </div>
+
+        {/* Toast Alert */}
+        {statusUpdateToast && (
+          <div className="p-4 bg-[#E8F5E9] border border-[#C8E6C9] text-[#2E7D32] rounded-xs text-xs font-bold flex items-center gap-2 animate-bounce">
+            <CheckCircle2 className="w-4 h-4" />
+            <span>{statusUpdateToast}</span>
+          </div>
+        )}
+
+        {/* Top Metric Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-white p-5 rounded-xs border border-[#E5E2D9] shadow-xs space-y-2">
+            <div className="flex items-center justify-between text-[#888]">
+              <span className="text-[10px] font-bold uppercase tracking-wider">Total Sales Volume</span>
+              <DollarSign className="w-4 h-4 text-[#8B4513]" />
+            </div>
+            <div className="text-2xl font-serif font-bold text-black">{formatPrice(totalRevenue)}</div>
+            <p className="text-[10px] text-[#2E7D32] font-semibold flex items-center gap-1">
+              <TrendingUp className="w-3 h-3" />
+              <span>+18.4% this week (Festive Season)</span>
             </p>
           </div>
 
-          {statusUpdateToast && (
-            <div className="bg-[#E8F5E9] border border-[#C8E6C9] text-[#2E7D32] px-4 py-2 rounded-xs text-xs font-bold animate-fadeIn">
-              ✓ {statusUpdateToast}
-            </div>
-          )}
-        </div>
-
-        {/* KPI Metrics Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-white p-5 rounded-xs border border-[#E5E2D9] shadow-xs space-y-2">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[#888]">Total Revenue</div>
-            <div className="font-serif text-xl sm:text-2xl font-bold text-black">{formatPrice(totalRevenue)}</div>
-            <div className="text-[10px] text-[#2E7D32] font-semibold flex items-center gap-1">
-              <TrendingUp className="w-3 h-3" />
-              <span>+18.4% this month</span>
+            <div className="flex items-center justify-between text-[#888]">
+              <span className="text-[10px] font-bold uppercase tracking-wider">Total Orders</span>
+              <Package className="w-4 h-4 text-[#8B4513]" />
             </div>
+            <div className="text-2xl font-serif font-bold text-black">{orders.length}</div>
+            <p className="text-[10px] text-[#666]">
+              {orders.filter((o) => o.orderStatus === 'Confirmed' || o.orderStatus === 'Tailoring & QC').length} pending dispatch
+            </p>
           </div>
 
           <div className="bg-white p-5 rounded-xs border border-[#E5E2D9] shadow-xs space-y-2">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[#888]">Active Orders</div>
-            <div className="font-serif text-xl sm:text-2xl font-bold text-black">{orders.length}</div>
-            <div className="text-[10px] text-[#8B4513] font-semibold">
-              {orders.filter((o) => o.orderStatus !== 'delivered').length} in active transit
+            <div className="flex items-center justify-between text-[#888]">
+              <span className="text-[10px] font-bold uppercase tracking-wider">Suits Dispatched</span>
+              <Users className="w-4 h-4 text-[#8B4513]" />
             </div>
+            <div className="text-2xl font-serif font-bold text-black">{totalItemsSold}</div>
+            <p className="text-[10px] text-[#2E7D32] font-semibold">100% On-Time BlueDart Fulfillment</p>
           </div>
 
           <div className="bg-white p-5 rounded-xs border border-[#E5E2D9] shadow-xs space-y-2">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[#888]">Active Catalog Items</div>
-            <div className="font-serif text-xl sm:text-2xl font-bold text-black">{products.length}</div>
-            <div className="text-[10px] text-[#666]">14 Pakistani design houses</div>
-          </div>
-
-          <div className="bg-white p-5 rounded-xs border border-[#E5E2D9] shadow-xs space-y-2">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[#888]">Total Suits Dispatched</div>
-            <div className="font-serif text-xl sm:text-2xl font-bold text-black">{totalItemsSold}</div>
-            <div className="text-[10px] text-[#2E7D32] font-semibold">100% On-time BlueDart rate</div>
+            <div className="flex items-center justify-between text-[#888]">
+              <span className="text-[10px] font-bold uppercase tracking-wider">Active Catalog Designs</span>
+              <ShieldCheck className="w-4 h-4 text-[#8B4513]" />
+            </div>
+            <div className="text-2xl font-serif font-bold text-black">{products.length}</div>
+            <p className="text-[10px] text-[#666]">100% Original Pakistani Stock</p>
           </div>
         </div>
 
-        {/* Tab Controls */}
-        <div className="flex gap-2 border-b border-[#E5E2D9] pb-4">
+        {/* Navigation Tabs */}
+        <div className="flex border-b border-[#E5E2D9] gap-4 text-xs font-bold uppercase tracking-wider">
           <button
             onClick={() => setActiveTab('orders')}
-            className={`px-5 py-2.5 rounded-xs text-xs font-bold uppercase tracking-wider transition ${
+            className={`pb-3 border-b-2 transition ${
               activeTab === 'orders'
-                ? 'bg-black text-white'
-                : 'bg-white border border-[#E5E2D9] text-[#666] hover:text-black'
+                ? 'border-[#8B4513] text-[#8B4513]'
+                : 'border-transparent text-[#777] hover:text-black'
             }`}
           >
-            Manage Orders ({orders.length})
+            Live Customer Orders ({orders.length})
           </button>
           <button
             onClick={() => setActiveTab('inventory')}
-            className={`px-5 py-2.5 rounded-xs text-xs font-bold uppercase tracking-wider transition ${
+            className={`pb-3 border-b-2 transition ${
               activeTab === 'inventory'
-                ? 'bg-black text-white'
-                : 'bg-white border border-[#E5E2D9] text-[#666] hover:text-black'
+                ? 'border-[#8B4513] text-[#8B4513]'
+                : 'border-transparent text-[#777] hover:text-black'
             }`}
           >
             Catalog Inventory ({products.length})
@@ -184,7 +206,7 @@ export default function AdminPage() {
               </div>
 
               <div className="flex flex-wrap gap-2 w-full sm:w-auto">
-                {['all', 'confirmed', 'in_tailoring', 'dispatched', 'delivered'].map((status) => (
+                {['all', 'Confirmed', 'Tailoring & QC', 'Dispatched', 'Delivered'].map((status) => (
                   <button
                     key={status}
                     onClick={() => setOrderFilter(status)}
@@ -194,7 +216,7 @@ export default function AdminPage() {
                         : 'bg-[#FAF9F6] border border-[#E5E2D9] text-[#666]'
                     }`}
                   >
-                    {status.replace(/_/g, ' ')}
+                    {status}
                   </button>
                 ))}
               </div>
@@ -255,13 +277,13 @@ export default function AdminPage() {
 
                         <td className="p-4">
                           <span className="inline-block bg-[#E8F5E9] border border-[#C8E6C9] text-[#2E7D32] px-2.5 py-1 rounded-xs font-bold text-[10px] uppercase">
-                            {order.orderStatus.replace(/_/g, ' ')}
+                            {order.orderStatus}
                           </span>
                         </td>
 
                         <td className="p-4 text-right">
                           <div className="flex flex-col items-end gap-1.5">
-                            {order.orderStatus !== 'delivered' && (
+                            {order.orderStatus !== 'Delivered' && (
                               <button
                                 onClick={() => handleAdvanceStatus(order.id, order.orderStatus)}
                                 className="bg-[#8B4513] hover:bg-[#72380F] text-white px-3 py-1.5 rounded-xs text-[10px] font-bold uppercase tracking-wider transition"
