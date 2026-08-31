@@ -89,55 +89,62 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#EBE8DF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Header Bar */}
+        {/* Single Sleek Header Bar */}
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           
-          {/* Left: Mobile Menu Trigger & Quick Links on Desktop */}
-          <div className="flex items-center gap-3 sm:gap-6">
+          {/* 1. Left: Brand Logo & Mobile Trigger */}
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#1A1A1A] hover:bg-[#F6F5F0] rounded-sm transition -ml-2"
+              className="lg:hidden p-1.5 text-[#1A1A1A] hover:bg-[#F6F5F0] rounded-xs transition -ml-1"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
 
-            {/* Desktop Quick Nav */}
-            <div className="hidden lg:flex items-center gap-6 text-[11px] uppercase tracking-[0.18em] font-medium text-[#4A4A4A]">
-              <Link href="/products?category=New%20Arrivals" className="hover:text-[#8B4513] transition-colors flex items-center gap-1 font-semibold text-[#8B4513]">
-                <Sparkles className="w-3 h-3 text-[#8B4513]" />
-                <span>New In</span>
-              </Link>
-              <Link href="/products?category=Unstitched%20Elegance" className="hover:text-black transition-colors">
-                Unstitched
-              </Link>
-              <Link href="/products?category=Festive%20Glam" className="hover:text-black transition-colors">
-                Festive
-              </Link>
-              <Link href="/products?category=Curves%20(XL-6XL)" className="hover:text-black transition-colors">
-                Curves (48)
-              </Link>
-            </div>
-          </div>
-
-          {/* Center: Brand Logo */}
-          <div className="flex-1 lg:flex-initial flex justify-center text-center">
             <Link
               href="/"
               onClick={() => setFilters((prev) => ({ ...prev, category: 'All', brand: [], searchQuery: '' }))}
-              className="flex flex-col items-center group select-none"
+              className="flex flex-col group select-none shrink-0"
             >
-              <span className="font-serif text-2xl sm:text-3xl font-bold tracking-[0.08em] uppercase text-[#1A1A1A] group-hover:text-[#8B4513] transition-colors leading-none">
-                UNSTITCHED
-              </span>
-              <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-[#888] font-medium mt-1">
-                Luxury Pakistani Suits
+              <div className="flex items-center gap-1.5">
+                <span className="font-serif text-xl sm:text-2xl font-bold tracking-[0.1em] uppercase text-[#1A1A1A] group-hover:text-[#8B4513] transition-colors leading-none">
+                  UNSTITCHED
+                </span>
+                <span className="text-[8px] bg-[#8B4513] text-white px-1 py-0.5 rounded-2xs font-bold uppercase tracking-widest hidden sm:inline-block">
+                  LUXE
+                </span>
+              </div>
+              <span className="text-[8px] uppercase tracking-[0.25em] text-[#888] font-medium hidden sm:block mt-0.5">
+                Pakistani Suits • India
               </span>
             </Link>
           </div>
 
-          {/* Right: Search, Size Guide, Wishlist & Cart */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          {/* 2. Center: Clean Inline Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-[11px] uppercase tracking-[0.14em] font-medium text-[#4A4A4A]">
+            {navCategories.map((item) => (
+              <Link
+                key={item.name}
+                href={item.path}
+                className={`transition-colors py-1 hover:text-black whitespace-nowrap ${
+                  item.isSpecial ? 'text-[#8B4513] font-semibold flex items-center gap-1' : 'text-[#4A4A4A]'
+                }`}
+              >
+                {item.isSpecial && <Sparkles className="w-3 h-3 text-[#8B4513]" />}
+                <span>{item.name}</span>
+              </Link>
+            ))}
+            <Link
+              href="/products?fastDispatch=true"
+              className="text-[10px] text-[#1A1A1A] bg-[#F2F0E9] hover:bg-[#E5E2D9] px-2 py-0.5 rounded-xs font-semibold tracking-wider transition whitespace-nowrap"
+            >
+              ⚡ 24h Dispatch
+            </Link>
+          </nav>
+
+          {/* 3. Right: Search, Sizes, Track, Wishlist & Cart */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Search Trigger / Input Box */}
             <div ref={searchRef} className="relative">
               {searchOpen ? (
@@ -209,7 +216,7 @@ export default function Navbar() {
             {/* Size Guide Link */}
             <Link
               href="/size-guide"
-              className="hidden md:flex items-center gap-1 px-2.5 py-1.5 rounded-xs text-[#555] hover:text-black hover:bg-[#F6F5F0] text-[10px] uppercase tracking-[0.15em] font-medium transition"
+              className="hidden xl:flex items-center gap-1 px-2 py-1.5 rounded-xs text-[#555] hover:text-black hover:bg-[#F6F5F0] text-[10px] uppercase tracking-[0.14em] font-medium transition"
             >
               <Scissors className="w-3.5 h-3.5 text-[#8B4513]" />
               <span>Sizes</span>
@@ -218,7 +225,7 @@ export default function Navbar() {
             {/* Track Link */}
             <Link
               href="/track-order"
-              className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-xs text-[#555] hover:text-black hover:bg-[#F6F5F0] text-[10px] uppercase tracking-[0.15em] font-medium transition"
+              className="hidden xl:flex items-center gap-1 px-2 py-1.5 rounded-xs text-[#555] hover:text-black hover:bg-[#F6F5F0] text-[10px] uppercase tracking-[0.14em] font-medium transition"
             >
               <Package className="w-3.5 h-3.5 text-[#8B4513]" />
               <span>Track</span>
@@ -257,28 +264,6 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-
-        {/* Secondary Category Sub-Nav: Clean, Uncluttered, Refined */}
-        <nav className="hidden lg:flex items-center justify-center gap-7 py-2.5 border-t border-[#EBE8DF] text-[11px] uppercase tracking-[0.16em] font-medium text-[#555]">
-          {navCategories.map((item) => (
-            <Link
-              key={item.name}
-              href={item.path}
-              className={`transition-colors py-0.5 hover:text-black ${
-                item.isSpecial ? 'text-[#8B4513] font-semibold flex items-center gap-1' : 'text-[#4A4A4A]'
-              }`}
-            >
-              {item.isSpecial && <Sparkles className="w-2.5 h-2.5 text-[#8B4513]" />}
-              <span>{item.name}</span>
-            </Link>
-          ))}
-          <Link
-            href="/products?fastDispatch=true"
-            className="text-[10px] text-[#1A1A1A] bg-[#F2F0E9] hover:bg-[#E5E2D9] px-2 py-0.5 rounded-xs font-semibold tracking-wider transition ml-2"
-          >
-            ⚡ 24h Dispatch
-          </Link>
-        </nav>
       </div>
 
       {/* Mobile Slide-in Drawer */}
