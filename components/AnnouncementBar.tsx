@@ -45,27 +45,41 @@ export default function AnnouncementBar() {
   }, [announcements.length]);
 
   return (
-    <aside aria-label="Store Announcement and Quick Links" className="bg-[#1A1A1A] text-white text-[11px] border-b border-[#2A2A2A]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between gap-4">
-        {/* Ticker on left */}
-        <div className="flex items-center gap-2 overflow-hidden flex-1">
-          <span className="bg-[#8B4513] text-white text-[8px] font-bold tracking-[0.2em] px-2 py-0.5 rounded-xs uppercase shrink-0">
-            OFFER
+    <aside aria-label="Store Announcement and Quick Links" className="bg-[#8B4513] text-white text-[11px] border-b border-[#783C10]">
+      <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-2">
+        {/* Ticker on left/center */}
+        <div className="flex items-center gap-2 overflow-hidden text-center md:text-left">
+          <span className="inline-flex items-center gap-1 bg-black/40 text-[#FAF9F6] text-[9px] font-bold tracking-[0.18em] px-2.5 py-0.5 rounded-sm uppercase shrink-0 border border-white/20">
+            <Sparkles className="w-3 h-3 text-[#F5DEB3]" />
+            Editorial
           </span>
-          <div className="transition-all duration-500 ease-in-out font-medium tracking-wide truncate text-[#DDD] text-[10px] sm:text-[11px]">
+          <div className="transition-all duration-500 ease-in-out font-medium tracking-wide truncate text-[#FAF9F6]">
             {announcements[currentIndex].text}
           </div>
         </div>
 
-        {/* Quick Utilities on right */}
-        <div className="flex items-center gap-4 shrink-0 text-[10px] uppercase tracking-wider text-[#BBB]">
+        {/* Action controls on right */}
+        <div className="flex items-center gap-4 shrink-0 text-[11px]">
+          {/* WhatsApp Direct Styling Help */}
+          <a
+            href="https://wa.me/919820089123?text=Hi%20Unstitched%20Luxe,%20I%20am%20looking%20for%20authentic%20Pakistani%20designer%20suits"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:flex items-center gap-1 text-[#E0E7D9] hover:text-white transition font-medium tracking-wide"
+            id="whatsapp-help-header-btn"
+          >
+            <MessageCircle className="w-3.5 h-3.5" />
+            <span>Styling Help: +91 98200 89123</span>
+          </a>
+
           {/* Currency Switcher */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center bg-black/30 px-2 py-0.5 rounded-xs border border-white/20 text-[10px] font-semibold tracking-wider">
+            <span className="text-[#E5E2D9] mr-1">Currency:</span>
             <select
               aria-label="Select Currency"
               value={currency}
               onChange={(e) => setCurrency(e.target.value as 'INR' | 'USD' | 'AED')}
-              className="bg-transparent text-white focus:outline-none cursor-pointer font-bold uppercase tracking-wider"
+              className="bg-transparent text-white focus:outline-none cursor-pointer font-bold"
               id="currency-selector"
             >
               <option value="INR" className="bg-[#1A1A1A] text-white">₹ INR</option>
@@ -74,17 +88,16 @@ export default function AnnouncementBar() {
             </select>
           </div>
 
-          {/* WhatsApp Direct Link */}
-          <a
-            href="https://wa.me/919820089123?text=Hi%20Unstitched%20Luxe,%20I%20am%20looking%20for%20authentic%20Pakistani%20designer%20suits"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:flex items-center gap-1 text-[#BBB] hover:text-white transition font-medium"
-            id="whatsapp-help-header-btn"
+          {/* Admin / Product Management Console Trigger */}
+          <button
+            onClick={openAdmin}
+            className="hidden md:flex items-center gap-1 text-[#FAF9F6]/80 hover:text-white transition px-2 py-0.5 rounded-xs hover:bg-black/30 text-[10px] uppercase tracking-wider font-semibold border border-white/10"
+            title="Product Management & Orders Studio"
+            id="admin-console-trigger-btn"
           >
-            <Phone className="w-3 h-3 text-[#C49A6C]" />
-            <span>Help: +91 98200 89123</span>
-          </a>
+            <Settings className="w-3 h-3 text-[#F5DEB3]" />
+            <span>Store Console</span>
+          </button>
         </div>
       </div>
     </aside>
