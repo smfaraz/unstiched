@@ -28,7 +28,7 @@ export default function CategoryPills() {
     { label: 'Formal Wear / Executive Style', category: 'Formal Wear', icon: Shield },
     { label: 'The Modern Edit / Contemporary', category: 'The Modern Edit', icon: Sparkles },
     { label: 'Ethnic Daily Wear', category: 'Ethnic Daily Wear', icon: Tag },
-    { label: 'Curves (S to 4XL / 48)', category: 'Curves (XL-6XL)', icon: Sparkles, isSpecial: true },
+    { label: 'Curves (S to 4XL / 48)', category: 'Ready to Wear', icon: Sparkles, isSpecial: true },
   ];
 
   const handleSelect = (category: string) => {

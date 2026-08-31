@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth overflow-x-hidden w-full max-w-full">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -28,7 +28,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#FAF9F6] text-[#1A1A1A] antialiased selection:bg-[#8B4513] selection:text-white" suppressHydrationWarning>
+      <body className="bg-[#FAF9F6] text-[#1A1A1A] antialiased selection:bg-[#8B4513] selection:text-white overflow-x-hidden w-full max-w-full" suppressHydrationWarning>
         <Providers>
           {children}
         </Providers>
