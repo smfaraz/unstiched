@@ -14,7 +14,6 @@ import WishlistModal from '@/components/WishlistModal';
 import OrderTrackingModal from '@/components/OrderTrackingModal';
 import SizeGuideModal from '@/components/SizeGuideModal';
 import AdminProductManagerModal from '@/components/AdminProductManagerModal';
-import LiveSocialProof from '@/components/LiveSocialProof';
 
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { CheckCircle, Info, AlertTriangle } from 'lucide-react';
@@ -52,7 +51,6 @@ function GlobalStoreShell({ children }: { children: React.ReactNode }) {
       <Footer />
       <MobileBottomNav />
       <ToastNotification />
-      <LiveSocialProof />
 
       {/* Interactive Overlays / Modals */}
       <ProductDetailModal />
