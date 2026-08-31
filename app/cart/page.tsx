@@ -20,11 +20,15 @@ import {
 export default function CartPage() {
   const {
     cart,
+    cartCount,
     removeFromCart,
     updateCartQuantity,
     cartSubtotal,
     cartStitchingTotal,
     cartGrandTotal,
+    bundleDiscountPercent,
+    bundleDiscountAmount,
+    nextTierInfo,
     formatPrice,
     openCheckout,
     appliedCoupon,

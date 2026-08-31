@@ -117,7 +117,7 @@ export default function OrderConfirmationPage({ params }: PageProps) {
           </div>
 
           <div className="space-y-4">
-            {order.timeline.map((event, idx) => (
+            {order.trackingTimeline.map((event, idx) => (
               <div key={idx} className="flex gap-4 items-start">
                 <div className="flex flex-col items-center">
                   <div
@@ -129,7 +129,7 @@ export default function OrderConfirmationPage({ params }: PageProps) {
                   >
                     ✓
                   </div>
-                  {idx < order.timeline.length - 1 && (
+                  {idx < order.trackingTimeline.length - 1 && (
                     <div
                       className={`w-0.5 h-10 ${
                         event.isCompleted ? 'bg-[#2E7D32]' : 'bg-[#E5E2D9]'
@@ -144,7 +144,7 @@ export default function OrderConfirmationPage({ params }: PageProps) {
                     <span className="text-[10px] text-[#888]">{event.timestamp}</span>
                   </div>
                   <p className="text-[11px] text-[#555]">{event.description}</p>
-                  <span className="text-[10px] text-[#8B4513] font-semibold">{event.location}</span>
+                  <p className="text-[10px] text-[#888]">{event.location}</p>
                 </div>
               </div>
             ))}
@@ -152,63 +152,53 @@ export default function OrderConfirmationPage({ params }: PageProps) {
         </div>
 
         {/* Order Details & Summary Card */}
-        <div className="bg-white border border-[#E5E2D9] rounded-xs p-6 space-y-6 shadow-xs">
-          <h2 className="font-serif font-bold text-lg text-black border-b border-[#E5E2D9] pb-3">
-            Itemized Order Summary
-          </h2>
+        <div className="bg-white border border-[#E5E2D9] rounded-xs overflow-hidden shadow-xs">
+          <div className="p-6 bg-[#FAF9F6] border-b border-[#E5E2D9] flex justify-between items-center">
+            <h2 className="font-serif font-bold text-base text-black">
+              Ordered Suits & Bespoke Stitching ({order.items.reduce((s, i) => s + i.quantity, 0)} Items)
+            </h2>
+          </div>
 
-          <div className="space-y-4 divide-y divide-[#F2F0E9]">
+          <div className="divide-y divide-[#F2F0E9] p-6 space-y-4">
             {order.items.map((item) => (
-              <div key={item.id} className="pt-4 first:pt-0 flex flex-col sm:flex-row gap-4 justify-between">
-                <div className="flex gap-4">
-                  <div className="relative w-16 sm:w-20 aspect-3/4 rounded-xs overflow-hidden bg-[#EBE9E1] shrink-0 border border-[#E5E2D9]">
-                    <Image
-                      src={item.product.images[0]}
-                      alt={item.product.title}
-                      fill
-                      className="object-cover"
-                      sizes="80px"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-[#8B4513]">
-                      {item.product.brand}
-                    </div>
-                    <div className="font-serif font-bold text-xs sm:text-sm text-black">
-                      {item.product.title}
-                    </div>
-                    <div className="text-xs text-[#666]">
-                      Qty: {item.quantity} × {formatPrice(item.unitPrice)}
-                    </div>
-                    <div className="text-xs pt-1">
-                      {item.stitchingOption === 'unstitched' ? (
-                        <span className="text-[#555] bg-[#FAF9F6] px-2 py-0.5 rounded-xs border border-[#E5E2D9] text-[11px]">
-                          3-Piece Unstitched Fabric
-                        </span>
-                      ) : item.stitchingOption === 'stitched_standard' ? (
-                        <span className="text-[#8B4513] font-semibold bg-[#FAF5EE] px-2 py-0.5 rounded-xs border border-[#E8DFC8] text-[11px]">
-                          Standard Stitched (Size: {item.selectedSize})
-                        </span>
-                      ) : (
-                        <span className="text-[#8B4513] font-bold bg-[#FAF5EE] px-2 py-0.5 rounded-xs border border-[#E8DFC8] text-[11px]">
-                          Bespoke Made-to-Measure
-                        </span>
-                      )}
-                    </div>
-                  </div>
+              <div key={item.id} className="flex gap-4 items-start pt-4 first:pt-0">
+                <div className="relative w-16 h-20 bg-[#FAF5EE] border border-[#E8DFC8] rounded-xs overflow-hidden shrink-0">
+                  <Image
+                    src={item.product.images[0]}
+                    alt={item.product.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
+                <div className="flex-1 min-w-0 space-y-1">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="text-[10px] uppercase font-bold text-[#8B4513] tracking-widest">
+                        {item.product.brand}
+                      </div>
+                      <h3 className="font-bold text-xs text-black truncate">{item.product.title}</h3>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-bold text-xs text-black">{formatPrice(item.unitPrice * item.quantity)}</div>
+                      <div className="text-[10px] text-[#777]">Qty: {item.quantity}</div>
+                    </div>
+                  </div>
 
-                <div className="text-right sm:self-center">
-                  <div className="font-serif font-bold text-sm sm:text-base text-black">
-                    {formatPrice(item.totalPrice)}
+                  <div className="inline-flex items-center gap-1.5 text-[11px] text-[#555] bg-[#FAF9F6] px-2 py-0.5 rounded-xs border border-[#E5E2D9]">
+                    <Scissors className="w-3 h-3 text-[#8B4513]" />
+                    <span>
+                      {item.stitchingOption === 'unstitched' && 'Unstitched Fabric (Includes 3-Piece Raw yardage)'}
+                      {item.stitchingOption === 'stitched_standard' && `Standard Stitching: Size ${item.selectedSize}`}
+                      {item.stitchingOption === 'stitched_custom' && 'Bespoke Custom Tailoring (Tailor Studio)'}
+                    </span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Pricing breakdown */}
-          <div className="border-t border-[#E5E2D9] pt-4 space-y-2 text-xs">
+          {/* Price Breakdown Footer */}
+          <div className="bg-[#FAF9F6] border-t border-[#E5E2D9] p-6 space-y-2 text-xs">
             <div className="flex justify-between text-[#666]">
               <span>Suits Subtotal</span>
               <span className="font-semibold text-black">{formatPrice(order.subtotal)}</span>
@@ -219,10 +209,10 @@ export default function OrderConfirmationPage({ params }: PageProps) {
                 <span className="font-semibold text-black">+{formatPrice(order.stitchingTotal)}</span>
               </div>
             )}
-            {order.discountTotal > 0 && (
+            {order.discount > 0 && (
               <div className="flex justify-between text-[#2E7D32] font-semibold">
                 <span>Coupon Discount ({order.couponCode})</span>
-                <span>-{formatPrice(order.discountTotal)}</span>
+                <span>-{formatPrice(order.discount)}</span>
               </div>
             )}
             <div className="flex justify-between text-[#666]">
@@ -267,7 +257,7 @@ export default function OrderConfirmationPage({ params }: PageProps) {
             </div>
             <div className="flex justify-between">
               <span className="text-[#666]">Carrier:</span>
-              <span className="font-bold text-black">{order.shippingCarrier}</span>
+              <span className="font-bold text-black">{order.courierName}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#666]">Tracking AWB:</span>

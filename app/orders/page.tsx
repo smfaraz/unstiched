@@ -171,7 +171,7 @@ export default function OrdersPage() {
                     <div className="flex items-center gap-2">
                       <Truck className="w-4 h-4 text-[#8B4513]" />
                       <span>
-                        Carrier: <span className="font-bold text-black">{order.shippingCarrier}</span> (AWB: {order.trackingNumber})
+                        Carrier: <span className="font-bold text-black">{order.courierName}</span> (AWB: {order.trackingNumber})
                       </span>
                     </div>
                     <div>

@@ -95,8 +95,39 @@ export default function Navbar() {
     router.push(`/products?category=${encodeURIComponent(cat)}`);
   };
 
+  interface MegaMenuLink {
+    label: string;
+    cat?: string;
+    href?: string;
+    query?: string;
+  }
+
+  interface MegaMenuColumn {
+    heading: string;
+    links: MegaMenuLink[];
+  }
+
+  interface NavPillar {
+    id: string;
+    label: string;
+    href: string;
+    badge?: string;
+    isSpecial?: boolean;
+    megaMenu: {
+      columns: MegaMenuColumn[];
+      featuredProduct?: {
+        title: string;
+        subtitle: string;
+        price?: number;
+        image: string;
+        category?: string;
+        href?: string;
+      };
+    };
+  }
+
   // Miller's 5 Core Pillars
-  const NAV_PILLARS = [
+  const NAV_PILLARS: NavPillar[] = [
     {
       id: 'new-in',
       label: 'New Arrivals',
@@ -663,7 +694,7 @@ export default function Navbar() {
 
                     {mobileAccordion === pillar.id && (
                       <div className="p-3 bg-[#FAF9F6] border-t border-[#E5E2D9] space-y-2">
-                        {pillar.megaMenu.columns.flatMap((col) => col.links).map((link, idx) => (
+                        {pillar.megaMenu.columns.flatMap((col: MegaMenuColumn) => col.links).map((link: MegaMenuLink, idx: number) => (
                           <div key={idx}>
                             {link.href ? (
                               <Link

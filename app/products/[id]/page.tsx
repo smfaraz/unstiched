@@ -48,6 +48,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   } = useEcommerce();
 
   const product = products.find((p) => p.id === resolvedParams.id) || products[0];
+  const relatedProducts = products.filter((p) => p.id !== product?.id && (p.brand === product?.brand || p.category === product?.category)).slice(0, 4);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedStitching, setSelectedStitching] = useState<'unstitched' | 'stitched_standard' | 'stitched_custom'>('unstitched');

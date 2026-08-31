@@ -10,7 +10,16 @@ export default function CategoryPills() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const pills = [
+  interface PillItem {
+    label: string;
+    category: string;
+    icon: React.ComponentType<{ className?: string }>;
+    isHot?: boolean;
+    isSpecial?: boolean;
+    isDiscount?: boolean;
+  }
+
+  const pills: PillItem[] = [
     { label: 'All Suits', category: 'All', icon: Layers },
     { label: 'New Arrivals', category: 'New Arrivals', icon: Sparkles, isHot: true },
     { label: 'Unstitched Elegance', category: 'Unstitched Elegance', icon: Flame },

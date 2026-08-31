@@ -81,6 +81,7 @@ export default function CheckoutPage() {
   const [codOtpSent, setCodOtpSent] = useState(false);
   const [codOtp, setCodOtp] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderStage, setOrderStage] = useState<number>(1);
 
   // Coupon state
   const [couponInput, setCouponInput] = useState('');

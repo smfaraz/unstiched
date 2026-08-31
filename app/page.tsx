@@ -75,18 +75,16 @@ export default function HomePage() {
     switch (activeTab) {
       case 'trending':
         return products.filter((p) => p.isBestseller || p.rating >= 4.8).slice(0, 8);
-      case 'swissVoile':
-        return products.filter((p) => p.category === 'Swiss Voile' || p.fabric === 'Swiss Voile').slice(0, 8);
-      case 'schiffli':
-        return products.filter((p) => p.category === 'Schiffli Cutwork' || p.craftWork === 'Schiffli Cutwork').slice(0, 8);
-      case 'chiffon':
-        return products.filter((p) => p.category === 'Chiffon & Organza' || p.fabric === 'Chiffon' || p.fabric === 'Pure Organza').slice(0, 8);
+      case 'lawn2026':
+        return products.filter((p) => p.category === 'New Arrivals' || p.category === 'Unstitched Elegance' || p.fabric.toLowerCase().includes('lawn')).slice(0, 8);
+      case 'festive':
+        return products.filter((p) => p.category === 'Festive Glam' || p.category === 'Formal Wear').slice(0, 8);
       case 'curves':
-        return products.filter((p) => p.category === 'Curves (XL-6XL)').slice(0, 8);
-      case 'cottonSatin':
-        return products.filter((p) => p.category === 'Cotton Satin' || p.fabric === 'Cotton Satin').slice(0, 8);
+        return products.filter((p) => p.category === 'Curves (XL-6XL)' || p.availableSizes.includes('4XL - 48')).slice(0, 8);
+      case 'readyToWear':
+        return products.filter((p) => p.category === 'Ready to Wear' || p.category === 'The Modern Edit').slice(0, 8);
       case 'under1999':
-        return products.filter((p) => p.price <= 2499 || p.category === 'Under ₹1999').slice(0, 8);
+        return products.filter((p) => p.price <= 3500 || p.category === 'Ethnic Daily Wear').slice(0, 8);
       default:
         return products.slice(0, 8);
     }
