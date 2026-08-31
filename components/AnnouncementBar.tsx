@@ -45,21 +45,21 @@ export default function AnnouncementBar() {
   }, [announcements.length]);
 
   return (
-    <aside aria-label="Store Announcement and Quick Links" className="bg-[#8B4513] text-white text-[11px] border-b border-[#783C10] w-full overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-1.5 sm:py-2 flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2 w-full min-w-0">
-        {/* Ticker on left/center */}
-        <div className="flex items-center gap-1.5 sm:gap-2 overflow-hidden w-full sm:w-auto min-w-0 justify-center sm:justify-start">
-          <span className="inline-flex items-center gap-1 bg-black/40 text-[#FAF9F6] text-[9px] font-bold tracking-[0.15em] px-1.5 py-0.5 rounded-xs uppercase shrink-0 border border-white/20">
+    <aside aria-label="Store Announcement" className="bg-[#8B4513] text-white text-[10px] sm:text-[11px] border-b border-[#783C10] w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-1 sm:py-1.5 flex items-center justify-between gap-2 w-full min-w-0">
+        {/* Slim Ticker */}
+        <div className="flex items-center gap-1.5 overflow-hidden w-full sm:w-auto min-w-0 justify-center sm:justify-start">
+          <span className="inline-flex items-center gap-0.5 bg-black/40 text-[#FAF9F6] text-[8.5px] font-bold tracking-wider px-1.5 py-0.2 rounded-xs uppercase shrink-0 border border-white/20">
             <Sparkles className="w-2.5 h-2.5 text-[#F5DEB3]" />
             Offer
           </span>
-          <div className="transition-all duration-500 ease-in-out font-medium tracking-wide truncate text-[#FAF9F6] text-[10.5px] sm:text-[11px] text-center sm:text-left min-w-0">
+          <div className="transition-all duration-500 ease-in-out font-medium tracking-wide truncate text-[#FAF9F6] text-[10px] sm:text-[11px] text-center sm:text-left min-w-0">
             {announcements[currentIndex].text}
           </div>
         </div>
 
-        {/* Action controls on right */}
-        <div className="flex items-center justify-center gap-3 shrink-0 text-[10px] sm:text-[11px]">
+        {/* Action controls (desktop only to keep mobile ultra-compact) */}
+        <div className="hidden sm:flex items-center justify-center gap-3 shrink-0 text-[11px]">
           {/* WhatsApp Direct Styling Help */}
           <a
             href="https://wa.me/919820089123?text=Hi%20Unstitched%20Luxe,%20I%20am%20looking%20for%20authentic%20Pakistani%20designer%20suits"
@@ -88,7 +88,7 @@ export default function AnnouncementBar() {
             </select>
           </div>
 
-          {/* Admin / Product Management Console Trigger */}
+          {/* Admin Console */}
           <button
             onClick={openAdmin}
             className="hidden md:flex items-center gap-1 text-[#FAF9F6]/80 hover:text-white transition px-2 py-0.5 rounded-xs hover:bg-black/30 text-[10px] uppercase tracking-wider font-semibold border border-white/10"

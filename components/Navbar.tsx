@@ -305,16 +305,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E2D9] shadow-xs w-full max-w-full overflow-x-hidden" ref={navContainerRef}>
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
-        {/* Tier 1: Main Header Bar (Logo, Global Search, Actions) */}
-        <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4">
+        {/* Tier 1: Main Header Bar (Compact 50px on mobile, 72px on desktop) */}
+        <div className="flex items-center justify-between h-13 sm:h-20 gap-2 sm:gap-4">
           {/* Mobile Hamburger Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-[#1A1A1A] hover:bg-[#F2F0E9] rounded-xs transition"
+            className="lg:hidden p-1.5 text-[#1A1A1A] hover:bg-[#F2F0E9] rounded-xs transition"
             aria-label="Toggle Navigation Menu"
             id="mobile-nav-toggle-btn"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
           {/* Luxury Brand Entity (Unstitched Luxe) */}
@@ -327,20 +327,20 @@ export default function Navbar() {
             className="flex flex-col items-center sm:items-start cursor-pointer group select-none shrink-0"
             id="unstitched-brand-logo"
           >
-            <div className="flex items-center gap-2">
-              <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight uppercase text-[#1A1A1A] group-hover:text-[#8B4513] transition-colors">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="font-serif text-lg sm:text-2xl md:text-3xl font-bold tracking-tight uppercase text-[#1A1A1A] group-hover:text-[#8B4513] transition-colors">
                 UNSTITCHED
               </span>
-              <span className="text-[9px] font-sans bg-[#8B4513] text-white px-1.5 py-0.5 rounded-xs font-bold uppercase tracking-widest hidden md:inline-block">
+              <span className="text-[8px] sm:text-[9px] font-sans bg-[#8B4513] text-white px-1 sm:px-1.5 py-0.2 sm:py-0.5 rounded-xs font-bold uppercase tracking-widest hidden sm:inline-block">
                 LUXE
               </span>
             </div>
-            <span className="text-[8.5px] uppercase tracking-[0.28em] text-[#777] font-semibold hidden sm:block">
+            <span className="text-[8.5px] uppercase tracking-[0.28em] text-[#777] font-semibold hidden md:block">
               Luxury Pakistani Designer Wear • India
             </span>
           </Link>
 
-          {/* Global Predictive Search (Hick's Law Search Simplification) */}
+          {/* Global Predictive Search (Desktop Inline) */}
           <div ref={searchRef} className="relative hidden md:flex flex-1 max-w-lg mx-6">
             <form onSubmit={handleSearchSubmit} className="w-full relative">
               <input
@@ -352,15 +352,15 @@ export default function Navbar() {
                   setSearchOpen(true);
                 }}
                 onFocus={() => setSearchOpen(true)}
-                className="w-full bg-[#FAF9F6] border border-[#E5E2D9] rounded-xs pl-9 pr-9 py-2.5 text-xs text-[#1A1A1A] placeholder-[#888] focus:outline-none focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] transition shadow-2xs"
+                className="w-full bg-[#FAF9F6] border border-[#E5E2D9] rounded-xs pl-9 pr-9 py-2 text-xs text-[#1A1A1A] placeholder-[#888] focus:outline-none focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] transition shadow-2xs"
                 id="main-desktop-search-input"
               />
-              <Search className="w-4 h-4 text-[#888] absolute left-3 top-3" />
+              <Search className="w-4 h-4 text-[#888] absolute left-3 top-2.5" />
               {searchInput && (
                 <button
                   type="button"
                   onClick={() => setSearchInput('')}
-                  className="absolute right-3 top-3 text-[#888] hover:text-black"
+                  className="absolute right-3 top-2.5 text-[#888] hover:text-black"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -369,7 +369,7 @@ export default function Navbar() {
 
             {/* Instant Predictive Results Dropdown */}
             {searchOpen && searchResults.length > 0 && (
-              <div className="absolute top-12 left-0 right-0 bg-white border border-[#E5E2D9] rounded-xs shadow-xl z-50 p-2 overflow-hidden animate-in fade-in duration-200">
+              <div className="absolute top-11 left-0 right-0 bg-white border border-[#E5E2D9] rounded-xs shadow-xl z-50 p-2 overflow-hidden animate-in fade-in duration-200">
                 <div className="text-[10px] font-bold text-[#777] uppercase tracking-widest px-3 py-1.5 border-b border-[#F2F0E9] flex justify-between items-center">
                   <span>Found ({searchResults.length} Matches)</span>
                   <span className="text-[9px] text-[#8B4513]">Press Enter to view all</span>
@@ -416,8 +416,18 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Action Entities (Fitts's Law Target Sizing) */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Action Entities */}
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
+            {/* Mobile Search Toggle Icon */}
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="md:hidden p-2 text-[#1A1A1A] hover:bg-[#F2F0E9] rounded-xs transition"
+              aria-label="Search"
+              id="mobile-search-toggle-btn"
+            >
+              <Search className="w-4.5 h-4.5" />
+            </button>
+
             {/* Quick Track Order */}
             <Link
               href="/track-order"
@@ -441,13 +451,13 @@ export default function Navbar() {
             {/* Saved Wishlist */}
             <Link
               href="/wishlist"
-              className="relative p-2.5 text-[#1A1A1A] hover:bg-[#F2F0E9] rounded-xs transition flex items-center justify-center border border-transparent hover:border-[#E5E2D9]"
+              className="relative p-2 sm:p-2.5 text-[#1A1A1A] hover:bg-[#F2F0E9] rounded-xs transition flex items-center justify-center border border-transparent hover:border-[#E5E2D9]"
               aria-label="Wishlist"
               id="header-wishlist-btn"
             >
-              <Heart className="w-5 h-5" />
+              <Heart className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
               {wishlist.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#8B4513] text-white text-[9px] font-bold rounded-full flex items-center justify-center shadow-xs">
+                <span className="absolute top-0.5 right-0.5 sm:-top-1 sm:-right-1 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-[#8B4513] text-white text-[8px] sm:text-[9px] font-bold rounded-full flex items-center justify-center shadow-xs">
                   {wishlist.length}
                 </span>
               )}
@@ -456,13 +466,13 @@ export default function Navbar() {
             {/* Shopping Bag (Primary CTA) */}
             <Link
               href="/cart"
-              className="flex items-center gap-2.5 bg-black hover:bg-[#222] text-white px-4 py-2.5 rounded-xs shadow-xs transition group"
+              className="flex items-center gap-2 bg-black hover:bg-[#222] text-white px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xs shadow-xs transition group"
               id="header-shopping-cart-btn"
             >
               <div className="relative">
                 <ShoppingBag className="w-4 h-4 text-white" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-[#8B4513] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1.5 -right-2 bg-[#8B4513] text-white text-[8px] sm:text-[9px] font-bold w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shadow-xs">
                     {cartCount}
                   </span>
                 )}
@@ -475,20 +485,30 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Search Row */}
-        <div className="pb-3 md:hidden">
-          <form onSubmit={handleSearchSubmit} className="relative w-full">
-            <input
-              type="text"
-              placeholder="Search Pakistani suits, fabrics..."
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              className="w-full bg-[#FAF9F6] border border-[#E5E2D9] rounded-xs pl-8 pr-8 py-2 text-xs text-[#1A1A1A] placeholder-[#888] focus:outline-none focus:border-black"
-              id="mobile-search-input"
-            />
-            <Search className="w-3.5 h-3.5 text-[#888] absolute left-2.5 top-2.5" />
-          </form>
-        </div>
+        {/* Expandable Mobile Search Row (Only shown when search icon is clicked) */}
+        {searchOpen && (
+          <div className="pb-2.5 md:hidden animate-in slide-in-from-top-2 duration-200">
+            <form onSubmit={handleSearchSubmit} className="relative w-full">
+              <input
+                type="text"
+                placeholder="Search Pakistani suits, lawn, cutwork..."
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                autoFocus
+                className="w-full bg-[#FAF9F6] border border-[#8B4513] rounded-xs pl-8 pr-8 py-1.5 text-xs text-[#1A1A1A] placeholder-[#888] focus:outline-none"
+                id="mobile-search-input"
+              />
+              <Search className="w-3.5 h-3.5 text-[#8B4513] absolute left-2.5 top-2.5" />
+              <button
+                type="button"
+                onClick={() => setSearchOpen(false)}
+                className="absolute right-2.5 top-2 text-[#888] hover:text-black text-xs font-bold"
+              >
+                ✕
+              </button>
+            </form>
+          </div>
+        )}
 
         {/* Tier 2: Streamlined Miller's 5-Pillar Navigation Bar */}
         <nav className="hidden lg:flex items-center justify-between border-t border-[#E5E2D9] py-2 text-[11.5px] uppercase tracking-[0.16em] font-semibold text-[#444] select-none">
