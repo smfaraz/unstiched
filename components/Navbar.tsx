@@ -321,8 +321,9 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E2D9] shadow-xs w-full max-w-full overflow-x-hidden" ref={navContainerRef}>
-      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+    <>
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E2D9] shadow-xs w-full max-w-full" ref={navContainerRef}>
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
         {/* Tier 1: Main Header Bar (Compact 50px on mobile, 72px on desktop) */}
         <div className="flex items-center justify-between h-13 sm:h-20 gap-1.5 sm:gap-4">
           {/* Mobile Hamburger Menu Toggle */}
@@ -677,14 +678,14 @@ export default function Navbar() {
           </div>
         </div>
       )}
+    </header>
 
-      {/* Mobile Drawer Menu (Hierarchical Progressive Disclosure) */}
-      {/* Mobile Drawer Menu (Hierarchical Progressive Disclosure) */}
-      {mobileMenuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex"
-          onClick={() => setMobileMenuOpen(false)}
-        >
+    {/* Mobile Drawer Menu (Rendered OUTSIDE sticky backdrop-blur header so fixed inset-0 fills 100% viewport) */}
+    {mobileMenuOpen && (
+      <div
+        className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex"
+        onClick={() => setMobileMenuOpen(false)}
+      >
           <div
             className="w-[85%] max-w-sm bg-[#FAF9F6] h-full overflow-y-auto p-4 sm:p-5 shadow-2xl flex flex-col justify-between border-r border-[#E5E2D9] animate-in slide-in-from-left duration-250"
             onClick={(e) => e.stopPropagation()}
@@ -866,6 +867,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
