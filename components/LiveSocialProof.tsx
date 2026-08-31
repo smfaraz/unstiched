@@ -107,7 +107,7 @@ export default function LiveSocialProof() {
   return (
     <aside
       aria-label="Recent Shopper Activity Notification"
-      className="fixed bottom-4 left-4 z-40 max-w-xs sm:max-w-sm bg-white/95 backdrop-blur-md border border-[#E5E2D9] rounded-xs shadow-2xl p-3 animate-in slide-in-from-bottom-5 fade-in duration-500 text-xs transition-all"
+      className="fixed bottom-16 sm:bottom-4 left-3 right-3 sm:right-auto sm:left-4 z-30 max-w-sm bg-white/95 backdrop-blur-md border border-[#E5E2D9] rounded-xs shadow-2xl p-3 animate-in slide-in-from-bottom-5 fade-in duration-500 text-xs transition-all"
     >
       <div className="flex items-start gap-3 relative">
         {/* Product Thumbnail */}

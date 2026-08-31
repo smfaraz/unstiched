@@ -59,26 +59,26 @@ export default function HeroBanner() {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
               <Link
-                href="/products?category=Pure%20Lawn"
-                className="bg-black hover:bg-[#2A2A2A] text-white font-bold text-xs uppercase tracking-widest px-7 py-3.5 rounded-xs shadow-xs transition-all duration-200 flex items-center gap-2 group"
+                href="/products?category=Unstitched%20Elegance"
+                className="bg-black hover:bg-[#2A2A2A] text-white font-bold text-xs uppercase tracking-widest px-7 py-3.5 rounded-xs shadow-xs transition-all duration-200 flex items-center gap-2 group w-full sm:w-auto justify-center"
                 id="hero-explore-lawn-btn"
               >
-                <span>Shop Pure Lawn &apos;26</span>
+                <span>Shop Unstitched &apos;26</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/products?category=Curves%20(XL-6XL)"
-                className="bg-[#8B4513] hover:bg-[#73390F] text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 rounded-xs transition-all duration-200 flex items-center gap-2 shadow-xs"
+                href="/products?category=Ready%20to%20Wear"
+                className="bg-[#8B4513] hover:bg-[#73390F] text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 rounded-xs transition-all duration-200 flex items-center gap-2 shadow-xs w-full sm:w-auto justify-center"
                 id="hero-curves-collection-btn"
               >
                 <Sparkles className="w-4 h-4 text-white" />
-                <span>Curves (XL to 6XL)</span>
+                <span>Ready to Wear / Curves</span>
               </Link>
 
               <Link
                 href="/products"
-                className="text-[#1A1A1A] hover:text-[#8B4513] text-xs font-bold uppercase tracking-wider underline underline-offset-4 px-2 py-2 transition"
+                className="text-[#1A1A1A] hover:text-[#8B4513] text-xs font-bold uppercase tracking-wider underline underline-offset-4 px-2 py-2 transition text-center w-full sm:w-auto"
                 id="hero-view-all-suits-btn"
               >
                 Browse All Suits →
@@ -118,8 +118,8 @@ export default function HeroBanner() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-[11px] text-[#888] line-through">₹5,999</div>
-                      <div className="text-sm font-bold text-[#1A1A1A]">₹4,499</div>
+                      <div className="text-[11px] text-[#888] line-through">₹2,999</div>
+                      <div className="text-sm font-bold text-[#1A1A1A]">₹2,199</div>
                     </div>
                   </div>
                   <div className="mt-2 pt-2 border-t border-[#F2F0E9] flex items-center justify-between text-[11px] text-[#666]">
@@ -127,7 +127,7 @@ export default function HeroBanner() {
                       <Truck className="w-3.5 h-3.5 text-[#8B4513]" />
                       <span>Ready for 24h Express Dispatch</span>
                     </span>
-                    <span className="text-[#8B4513] font-bold text-[10px] uppercase tracking-wider">25% OFF</span>
+                    <span className="text-[#8B4513] font-bold text-[10px] uppercase tracking-wider">26% OFF</span>
                   </div>
                 </div>
               </Link>

@@ -814,6 +814,32 @@ export default function ProductDetailPage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* Fixed Bottom Mobile Action Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#E5E2D9] px-4 py-2.5 flex items-center justify-between gap-3 shadow-2xl">
+        <div className="flex flex-col">
+          <span className="text-[10px] text-[#888] uppercase tracking-wider font-semibold">Total Price</span>
+          <span className="font-serif font-bold text-base text-[#1A1A1A]">
+            {formatPrice((product.price + (selectedStitching === 'stitched_standard' ? 499 : selectedStitching === 'stitched_custom' ? 799 : 0)) * quantity)}
+          </span>
+        </div>
+        <div className="flex items-center gap-2 flex-1 max-w-xs">
+          <button
+            onClick={handleAddToCart}
+            disabled={isAdding}
+            className="flex-1 bg-[#FAF5EE] border border-[#E8DFC8] text-[#8B4513] hover:bg-[#8B4513] hover:text-white py-2.5 rounded-xs font-bold text-xs uppercase tracking-wider transition text-center"
+          >
+            {isAdding ? 'Adding...' : 'Add to Bag'}
+          </button>
+          <button
+            onClick={handleBuyNow}
+            disabled={isBuyingNow}
+            className="flex-1 bg-black text-white py-2.5 rounded-xs font-bold text-xs uppercase tracking-wider hover:bg-[#222] transition text-center shadow-xs"
+          >
+            {isBuyingNow ? 'Loading...' : 'Buy Now'}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
